@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="3614e0f1-15dd-4096-b181-233a0730dcaf">
+  <descriptionCdata><![CDATA[3614e0f1-15dd-4096-b181-233a0730dcaf.42168a14-0f2a-456b-991c-858ff55d8b25.description=Description\:\n-------------\nCe flow permet d'ajouter une nouvelle entr\u00E9e de type "ResultExecution" au rapport d'ex\u00E9cution.\nIl ajoute une ligne format\u00E9e de la mani\u00E8re suivante \: \nresultExecution\u00A4<in.type>\u00A4<in.object>\u00A4<in.target>\u00A4<in.status>\u00A4<in.desc>\n\nLa nouvelle entr\u00E9e est ajout\u00E9e \u00E0 la variable globale "VF.reportInfos" (initialis\u00E9e par le flow "Report.init").\n\nExemples \: \nresultExecution\u00A4Exec script "SASC.COLLECT.UNX"\u00A4Collect server information\u00A4srv123\u00A4SUCCESS\u00A4\nresultExecution\u00A4Exec script "SASC.COLLECT.UNX"\u00A4Collect server information\u00A4srv123\u00A4FAILURE\u00A4Server cannot be reached\n\nSi les caract\u00E8res de s\u00E9paration ne sont pas indiqu\u00E9s, l'op\u00E9ration utilisera les valeurs par d\u00E9faut.\n\nInputs\:\n--------\nin.type (obligatoire) \:\tType de l'op\u00E9ration\nin.object \:\t\tObjectif de l'op\u00E9ration\nin.target \:\t\tCible de l'op\u00E9ration (serveur, fichier, ...)\nin.status (obligatoire) \:\tR\u00E9sultat de l'op\u00E9ration (SUCCESS, FAILURE, WARNING, BYPASS)\nin.desc \: \t\tInformations compl\u00E9mentaire (Message d'erreur en cas de FAILURE, ...)\nin.separatorField\:\tCaract\u00E8re de s\u00E9paration des champs du rapport\nin.separatorRow\:\tCaract\u00E8re de s\u00E9paration des lignes du rapport\n\nInputs Examples\:\n--------------------\nin.type \:\t\t"Exec 'SASC.DEV.UNX.CollectData''"\nin.object \:\t\t"Collecter informations serveur"\nin.target \:\t\t"srvWin123"\nin.status \:\t\t"FAILURE"\nin.desc \: \t\t"Serveur non joignable"\nin.separatorField\:\t""\nin.separatorRow\:\t""\n\nOutputs\:\n----------\nou.reportContent \:\tnouvelle ligne ajout\u00E9e\n\nRevision\:\n----------\n16-10-2017 \: Capgemini - FBI\nversion initiale\n\nConfiguration\:\n----------------\nOOSP.HPOO.Report.separatorField (System Property) \: caract\u00E8re de s\u00E9paration des champs composant le rapport d'ex\u00E9cution\nOOSP.HPOO.Report.separatorRow (System Property) \: caract\u00E8re de s\u00E9paration des lignes composant le rapport d'ex\u00E9cution\n
+3614e0f1-15dd-4096-b181-233a0730dcaf.6075e9cf-34ad-4e4d-b870-012e3f8251d3.callout=Codification \: \nin.xxxxx \: param\u00E8tre d'entr\u00E9e (modifiable)\nvf.xxxxx \: variable de flow (modifiable)\ncf.xxxxx \: variable issue de la configuration du flow (modifiable)\n<YY>.xxxxx \: variable li\u00E9e au template (non modifiable)\nYY \= IN, VF, CF
+3614e0f1-15dd-4096-b181-233a0730dcaf.994e17a1-f985-4211-a825-5c87219e3e81.description=Description\:\n--------------\nCe flow permet d'ajouter une nouvelle entr\u00E9e de type "enteteReport" au rapport d'ex\u00E9cution.\nIl ajoute une ligne format\u00E9e de la mani\u00E8re suivante \: \nenteteReport\u00A4<in.name>\u00A4<in.value>\n\nLa nouvelle entr\u00E9e est ajout\u00E9e \u00E0 la variable globale "VF.reportInfos" (initialis\u00E9e par le flow "Report.init").\n\nExemples \: \nenteteReport\u00A4Emetteur\u00A4AExxx\nenteteReport\u00A4Objectif\u00A4Cas d'usage permettant de ...\nenteteReport\u00A4ExecutionID\u00A4123456789\n\nSi les caract\u00E8res de s\u00E9paration ne sont pas indiqu\u00E9s, l'op\u00E9ration utilisera les valeurs par d\u00E9faut.\n\nInputs\:\n--------\nin.name (obligatoire) \:\tNom de l'ent\u00EAte \u00E0 ajouter\nin.value (obligatoire) \:\tValeur de l'ent\u00EAte \u00E0 ajouter\nin.separatorField\:\tCaract\u00E8re de s\u00E9paration des champs du rapport\nin.separatorRow\:\tCaract\u00E8re de s\u00E9paration des lignes du rapport\n\nInputs Examples\:\n--------------------\nin.name \:\t\t"Emetteur"\nin.value \:\t\t"AE123"\nin.separatorField\:\t""\nin.separatorRow\:\t""\n\nOutputs\:\n----------\nN/A\n\nRevision\:\n----------\n16-10-2017 \: Capgemini - FBI\nversion initiale\n\nConfiguration\:\n----------------\nOOSP.HPOO.Report.separatorField (System Property) \: caract\u00E8re de s\u00E9paration des champs composant le rapport d'ex\u00E9cution\nOOSP.HPOO.Report.separatorRow (System Property) \: caract\u00E8re de s\u00E9paration des lignes composant le rapport d'ex\u00E9cution
+3614e0f1-15dd-4096-b181-233a0730dcaf.a5d98241-0171-49fb-a5f8-8511b0459c21.description=Summary \: \n-------------\nATTENTION \: \u00E0 la diff\u00E9rence du flow Config.getValue, ce flow remonte TOUTES les variables de configuration d'un cas d'usage (pour un environnement sp\u00E9cifique)\n\nRecherche les  informations de configuration du Flow OO dans fichier de configuration install\u00E9 sur le RAS.\nLes fichiers de configuration des Flows OO sont associ\u00E9s \u00E0 un cas d'usage et un identifiant de configuration, ils sont install\u00E9s sur le RAS dans \:\n<Racine>\\etc\\config\\<Identifiant Cas d'usage>\nles fichiers sont nomm\u00E9s comme suit \:\n<Identifiant Cas d'usage>_<identifiant configuration>.cfg\n\nCes fichiers contiennent des mots cl\u00E9s avec les valeurs de configuration, ils sont sous la forme de fichier .ini\n\nLe flow termine en erreur si echec de recup\u00E9ration des informations de configuration.\n\nRevision \:\n------------\n16-10-2015 \: Capgemini - PGT\nversion initiale\n\nInput \:\n--------\nI_casus\:\t\tIdentifiant du Cas d'Usage\nI_configId\:\tidentifiant configuration\nI_key\:\t\tCle de s\u00E9lection, peut etre \:\n\t\t<mot cle recherch\u00E9>\n\t\t<Item>.<mot cl\u00E9 recherch\u00E9>\t\n\nOutput \:\n----------\nO_keyValue\:\t\tValeur du mot cl\u00E9 en format XML\n\n\nExemple de Fichier de configuration \:\n--------------------------------------------\nfichier \: D\:\\adm_cst\\etc\\config\\AE139\\AE139_DEVE.cfg\n\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\n[DEFAULT]\n_Description \= RECETTE - Aguila agent configuration processing.\n\n\n[QUALIPARC]\n_QpEnv \= _QP_PRD\n\n[SUPERVISION]\n_BsmEnv \= _BSM_PRD\n_ZoneConf \= { 'ZS01' \: (u'OML Zone de S\u00E9curit\u00E9 01 (ZMC)',      'xfrprodas91','AGUILA-PROD-OM-ZS01'),\n              'ZS02' \: (u'OML Zone de S\u00E9curit\u00E9 02 (AREVANET)', 'xfrprodas86','AGUILA-PROD-OM-ZS02'),\n              'ZS03' \: (u'OML Zone de S\u00E9curit\u00E9 03 (RS-SEC)',   'xfrprodas85','AGUILA-PROD-OM-ZS03'),\n              'ZS99' \: (u'OML Zone de S\u00E9curit\u00E9 99 (Sandbox)',  'xfrsdbxas23','AGUILA-PROD-OM-ZS99'),\n             }\n\n[MAIL]\n_MailDescription \= "Aguila \: Node configuration Aguila agent."\n_MailRecipient \= didier.marion.ext@areva.com;david.lepoittevin-montagne.ext@areva.com;david.duval.ext@areva.com\n\n[USD]\n_UsdEnv   \= _USD_REC\n_UsdGroup \= CPO-SUPERVISION-SUPPORT\n_UsdTitle \= Une ou plusieurs anomalies ont \u00E9t\u00E9 d\u00E9tect\u00E9es lors de l'ex\u00E9cution du flow.\n\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\n\nExemple de recherche des la valeurs des mots cl\u00E9 \:\n\nParam\u00E8tre en entr\u00E9e \u00E0 renseigner \:\nI_casus \= AE139\nI_configId \= DEFAULT\n
+3614e0f1-15dd-4096-b181-233a0730dcaf.description=Description\:\n-------------\nCe flow permet de lire le fichier de configuration relatif au cas d'usage.\nIl permet de r\u00E9cup\u00E9rer la valeur des param\u00E8tres d\u00E9clar\u00E9s dans ce fichier.\nLe nom du fichier de configuration est norm\u00E9 \: il est construit de la mani\u00E8re suivante \: \n<caseIdent>_<name>.cfg\no\u00F9\n<caseIdent> repr\u00E9sente l'identifiant du cas d'usage  (correspond \u00E0 l'input "IN.casusIdent")\n<name> reprr\u00E9sente l'identifiant du fichier de configuration (correspond \u00E0 l'input "in.configName")\nExemple \: \nAx000_RECETTE.cfg \: fichier de configuration du cas d'usage Ax000 d\u00E9di\u00E9 \u00E0 l'environnement de recette.\nAx000_PROD.cfg \: fichier de configuration du cas d'usage Ax000 d\u00E9di\u00E9 \u00E0 l'environnement de production.\nAx000_SQL.cfg \: fichier de configuration du cas d'usage Ax000 sp\u00E9cifique aux bases de donn\u00E9es MSSQL.\nAx000_SQL.cfg \: fichier de configuration du cas d'usage Ax000 sp\u00E9cifique aux bases de donn\u00E9es ORACLE.\n\nInputs\:\n--------\nIN.casusIdent (obligatoire)\:\tIdentification du cas d'usage\nin.configName (obligatoire)\:\tidentification du fichier de configuration \u00E0 lire\n\nInputs Examples\:\n--------------------\nIN.casusIdent \:\t\tAx000\nin.configName \:\tPROD\n\nOutputs\:\n----------\nCF.casusDesc \: \tDescription du cas d'usage\nCF.destEmail \: \t\tDestinataire des rapports d'ex\u00E9cution\n\nRevision\:\n----------\n16-10-2017 \: Capgemini - FBI\nversion initiale\n\nConfiguration\:\n----------------\nAx000_<name> \: \tFichier de configuration relatif au cas d'usage
+]]></descriptionCdata>
+  <annotation>3614e0f1-15dd-4096-b181-233a0730dcaf.description</annotation>
+  <name>Ax000.readConfigFile</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="49958413-5abb-42f7-bfbe-0c499da083c8">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>IN.casusIdent</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="da742b64-9e18-4c57-a61d-40cddac3979e">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>IN.configName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="a429a1e9-a777-4e03-9fcb-5d9632a0c9c7">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="89462f0d-2f6f-4f8b-a970-07b95aa28557">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="4e3ee1e0-d189-43a8-b592-43fdb3dfd197">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="ac517c3c-9b01-4fdd-987f-df78b95ecb57">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts>
+    <callout id="6075e9cf-34ad-4e4d-b870-012e3f8251d3">
+      <text>3614e0f1-15dd-4096-b181-233a0730dcaf.6075e9cf-34ad-4e4d-b870-012e3f8251d3.callout</text>
+      <bounds>
+        <x>21.0</x>
+        <y>20.0</y>
+        <width>350.0</width>
+        <height>117.0</height>
+      </bounds>
+      <layer>-1</layer>
+    </callout>
+  </callouts>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="a5d98241-0171-49fb-a5f8-8511b0459c21">
+      <annotation>3614e0f1-15dd-4096-b181-233a0730dcaf.a5d98241-0171-49fb-a5f8-8511b0459c21.description</annotation>
+      <name>Get All Config Values</name>
+      <bounds>
+        <x>83.0</x>
+        <y>381.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="cc4edc35-9fb8-4575-86c3-6e99351e4cc9">
+          <annotation></annotation>
+          <fromContextKey>IN.casusIdent</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>I_casus</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>__UNDEFINED__</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="aba1642c-dcc7-4d45-9de3-df3e3fc87761">
+          <annotation></annotation>
+          <fromContextKey>IN.configName</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>I_configId</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>DEFAULT</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c89c661e-9248-4e20-a6c6-41271693de62">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>I_verbose</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>False</value>
+          <record>false</record>
+          <validationFormat>
+            <refId>0eb04b56-2e75-41d8-85d7-cb6311e96ae9</refId>
+            <refName>OOSE.checkBoolean</refName>
+          </validationFormat>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="189e8a7b-7756-43ef-9b30-9480847a471c">
+          <annotation></annotation>
+          <name>unsuccess</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>unsuccess</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>42168a14-0f2a-456b-991c-858ff55d8b25</refId>
+          </destination>
+          <source>
+            <refId>a5d98241-0171-49fb-a5f8-8511b0459c21</refId>
+          </source>
+          <positions>
+            <point>
+              <x>133.0</x>
+              <y>415.0</y>
+            </point>
+            <point>
+              <x>140.0</x>
+              <y>280.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+        <transition id="fad83156-922a-40af-bade-1849fd7a4674">
+          <annotation></annotation>
+          <name>failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>42168a14-0f2a-456b-991c-858ff55d8b25</refId>
+          </destination>
+          <source>
+            <refId>a5d98241-0171-49fb-a5f8-8511b0459c21</refId>
+          </source>
+          <positions>
+            <point>
+              <x>116.25</x>
+              <y>387.0</y>
+            </point>
+            <point>
+              <x>140.0</x>
+              <y>296.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>512.870564024379</x>
+            <y>-3.8692108914432746</y>
+          </labelPosition>
+        </transition>
+        <transition id="92ca4ff5-bcdb-4e18-a684-de15fa1580ef">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>994e17a1-f985-4211-a825-5c87219e3e81</refId>
+          </destination>
+          <source>
+            <refId>a5d98241-0171-49fb-a5f8-8511b0459c21</refId>
+          </source>
+          <positions>
+            <point>
+              <x>133.0</x>
+              <y>415.0</y>
+            </point>
+            <point>
+              <x>313.0</x>
+              <y>414.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>393d6c19-1df0-4e1b-86d1-d1c9036a7f45</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="e207ef72-bd6d-4786-b804-1878e832c422">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>vf.casusDesc</contextKey>
+          <expression id="0d4d94c8-9d75-4150-9690-54f372ac24d5">
+            <annotation></annotation>
+            <name>Result: allKeysValuesAsXml</name>
+            <fieldName>allKeysValuesAsXml</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters>
+              <xpathFilter id="339ee812-86e3-4b3c-acc2-3e2adb1da178">
+                <annotation></annotation>
+                <name>XPath Query</name>
+                <xpathQuery>/DATAS/DATA[ (NAME = &apos;_casusDesc&apos;) ]/VALUE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="fd601800-afb5-4c13-9c61-de6a0ac6af62">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>VF.casusDesc</contextKey>
+          <expression id="da4ec814-c854-43b9-b81d-d6a2020ca10c">
+            <annotation></annotation>
+            <name>Result: allKeysValuesAsXml</name>
+            <fieldName>allKeysValuesAsXml</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters>
+              <xpathFilter id="25ce0088-8fe1-44ee-a635-56e8b2e58e9e">
+                <annotation></annotation>
+                <name>XPath Query</name>
+                <xpathQuery>/DATAS/DATA[ (NAME = &apos;_casusDesc&apos;) ]/VALUE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="b97ac282-e590-4c95-84cf-cdf2c599b1b5">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>VF.destEmail</contextKey>
+          <expression id="0bd06abe-94bd-4997-a09a-85a5ba388ff8">
+            <annotation></annotation>
+            <name>Result: allKeysValuesAsXml</name>
+            <fieldName>allKeysValuesAsXml</fieldName>
+            <sourceType>AVAILABLE_RESULT</sourceType>
+            <filters>
+              <xpathFilter id="e4857035-4a4e-4255-a13d-1ff9b7014577">
+                <annotation></annotation>
+                <name>XPath Query</name>
+                <xpathQuery>/DATAS/DATA[ (NAME = &apos;_destEmail&apos;) ]/VALUE/text()</xpathQuery>
+              </xpathFilter>
+            </filters>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <step id="42168a14-0f2a-456b-991c-858ff55d8b25">
+      <annotation>3614e0f1-15dd-4096-b181-233a0730dcaf.42168a14-0f2a-456b-991c-858ff55d8b25.description</annotation>
+      <name>Add Result To Report</name>
+      <bounds>
+        <x>260.0</x>
+        <y>236.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="2fb2174d-8ff5-4d55-a487-bbc51180690a">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.stepName</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Read Config File</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="f4f981b8-f3a7-404e-a6b4-784ec3fc9dc3">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.stepDesc</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="20af7003-9e11-4ea6-9cff-9c64397fe7a5">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.target</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${IN.casusIdent}_${IN.configName}</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="5150b1b3-a3ba-4628-9225-23bd02ce0531">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.stepStatus</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>FAILURE</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="9194a0fc-934a-4071-87aa-2390d085f21d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.stepMsg</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Error Reading config file</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="5b7eca58-4f88-41ca-bac0-d7016bf98a9c">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>0af5dbf5-5324-403d-b58b-9a7e67ba97d4</refId>
+          </destination>
+          <source>
+            <refId>42168a14-0f2a-456b-991c-858ff55d8b25</refId>
+          </source>
+          <positions>
+            <point>
+              <x>140.0</x>
+              <y>280.0</y>
+            </point>
+            <point>
+              <x>315.0</x>
+              <y>277.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>dd28d0f1-1ad7-4bef-b7f7-2cc73a361c71</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="f83b0cc7-ba64-4a68-9380-1bab58176fce">
+      <annotation></annotation>
+      <name>Resolved : success</name>
+      <bounds>
+        <x>433.0</x>
+        <y>381.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="9711347f-7f0a-4447-bb6c-39090bf49c2a">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>f83b0cc7-ba64-4a68-9380-1bab58176fce</refId>
+          </destination>
+          <source>
+            <refId>f83b0cc7-ba64-4a68-9380-1bab58176fce</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="0af5dbf5-5324-403d-b58b-9a7e67ba97d4">
+      <annotation></annotation>
+      <name>Error : failure</name>
+      <bounds>
+        <x>431.0</x>
+        <y>236.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="7607d1ab-a412-41de-950e-a813237ecee3">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>0af5dbf5-5324-403d-b58b-9a7e67ba97d4</refId>
+          </destination>
+          <source>
+            <refId>0af5dbf5-5324-403d-b58b-9a7e67ba97d4</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+    <step id="994e17a1-f985-4211-a825-5c87219e3e81">
+      <annotation>3614e0f1-15dd-4096-b181-233a0730dcaf.994e17a1-f985-4211-a825-5c87219e3e81.description</annotation>
+      <name>Add Header To Report</name>
+      <bounds>
+        <x>263.0</x>
+        <y>380.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="7a461ba4-85e8-4952-8000-aa98d64be3f7">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.name</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>Objectif</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="3f038b8d-83ed-41a0-83b3-e9f05a3f1c0c">
+          <annotation></annotation>
+          <fromContextKey>vf.casusDesc</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.value</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>__UNDEFINED__</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="839c90c6-173a-4546-a5ab-4b241c74f6ef">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>f83b0cc7-ba64-4a68-9380-1bab58176fce</refId>
+          </destination>
+          <source>
+            <refId>994e17a1-f985-4211-a825-5c87219e3e81</refId>
+          </source>
+          <positions>
+            <point>
+              <x>313.0</x>
+              <y>414.0</y>
+            </point>
+            <point>
+              <x>483.0</x>
+              <y>415.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>a8e2d4da-94a7-4894-9d8e-dbb694950660</refId>
+      </opRef>
+      <assignments/>
+      <throttleSize>0</throttleSize>
+    </step>
+  </steps>
+  <startSteps>a5d98241-0171-49fb-a5f8-8511b0459c21</startSteps>
+</flow>
