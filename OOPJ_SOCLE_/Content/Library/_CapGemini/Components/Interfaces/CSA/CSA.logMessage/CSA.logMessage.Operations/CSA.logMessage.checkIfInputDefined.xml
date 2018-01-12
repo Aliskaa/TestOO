@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="a5198aa7-193d-488b-b30e-864f228d2d2f">
+  <descriptionCdata><![CDATA[a5198aa7-193d-488b-b30e-864f228d2d2f.description=pre>\nCette op\u00E9ration permet de d\u00E9terminer si une inuput est d\u00E9fini ou non.\nSi l'input est \u00E9gale aux valeurs suivantes, elle est consid\u00E9r\u00E9e comme "UNDEFINED" (sinon elle est "DEFINED" \: \n - ""\n - "__UNDEFINED__" (minuscule/majuscule confondu)\n\nInputs\:\n--------------------------------\ninput \:\t\tInput \u00E0 tester\n\nOutputs\:\n--------------------------------\nN/A\n\nResponses\:\n--------------------------------\nUNDEFINED \: \tinput non d\u00E9finie\nDEFINED \: \t\tinput d\u00E9finie\n</pre>
+]]></descriptionCdata>
+  <annotation>a5198aa7-193d-488b-b30e-864f228d2d2f.description</annotation>
+  <name>CSA.logMessage.checkIfInputDefined</name>
+  <categories/>
+  <inputs>
+    <userInputBinding id="4a017bf1-b704-4e02-b12b-02f98a45e54e">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>input</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+    <staticBinding id="41d1126d-58f8-4647-aceb-bdc23fefa9d9">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_1</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${input}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="a997e4c4-a330-41f2-8785-fd6abedb8ceb">
+      <annotation></annotation>
+      <name>UNDEFINED</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules>
+        <expression id="f83a9c4c-31a6-4753-8b06-a8a8c7d467d6">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="aa0a7d79-fac7-4484-98ee-68c88cb0e698">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>__UNDEFINED__</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters>
+            <caseFilter id="9c367ff4-ca1f-4b13-9a14-d3ce1c41cff4">
+              <annotation></annotation>
+              <name>Diff Case</name>
+              <toUpper>true</toUpper>
+            </caseFilter>
+            <concat id="573721a2-0013-4ba3-a662-887858aa3d2a">
+              <annotation></annotation>
+              <name>Format</name>
+              <text>==</text>
+              <position>BEGINNING</position>
+            </concat>
+            <concat id="48f03d2f-9527-4525-99bf-30c385f22aa1">
+              <annotation></annotation>
+              <name>Format</name>
+              <text>==</text>
+              <position>END</position>
+            </concat>
+            <scriptletFilter id="6c6b67b1-71e9-411a-a17c-29bdae27e338">
+              <annotation></annotation>
+              <name>Scriptlet</name>
+              <scriptlet id="8a9315a8-14aa-4f8c-bd9c-f15a145b1914">
+                <annotation></annotation>
+                <name>default</name>
+                <script>if (scriptletInput == &quot;====&quot; || scriptletInput == &quot;==__UNDEFINED__==&quot;)
+{
+	scriptletResult = &quot;__UNDEFINED__&quot;
+}
+else
+{
+	scriptletResult = scriptletInput
+}</script>
+                <type>RHINO</type>
+              </scriptlet>
+            </scriptletFilter>
+          </filters>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="e4ce94e9-161d-4f2f-a13a-4396a18df67e">
+      <annotation></annotation>
+      <name>DEFINED</name>
+      <isDefault>true</isDefault>
+      <onFailure>true</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="b90ff447-b192-4f3b-aebf-9196415a2d45">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="ff1144be-7005-4b88-849d-46cdfa367efe">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>__UNDEFiNED__</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>NOT_EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters>
+            <caseFilter id="591cf75d-1a2d-4132-bc1b-45a8f9300a9c">
+              <annotation></annotation>
+              <name>Diff Case</name>
+              <toUpper>true</toUpper>
+            </caseFilter>
+            <concat id="3a5ab66e-2ca8-44a7-a605-7b5fab6d9084">
+              <annotation></annotation>
+              <name>Format</name>
+              <text>==</text>
+              <position>BEGINNING</position>
+            </concat>
+            <concat id="bf71039f-f772-4cb2-8169-a8ce475c6546">
+              <annotation></annotation>
+              <name>Format</name>
+              <text>==</text>
+              <position>END</position>
+            </concat>
+            <scriptletFilter id="a750c070-0004-4097-923f-39eb4a742711">
+              <annotation></annotation>
+              <name>Scriptlet</name>
+              <scriptlet id="4f4b87b4-628a-4e27-a6b7-159c7bceb345">
+                <annotation></annotation>
+                <name>default</name>
+                <script>if (scriptletInput == &quot;====&quot; || scriptletInput == &quot;==__UNDEFINED__==&quot;)
+{
+	scriptletResult = &quot;__UNDEFINED__&quot;
+}
+else
+{
+	scriptletResult = scriptletInput
+}</script>
+                <type>RHINO</type>
+              </scriptlet>
+            </scriptletFilter>
+          </filters>
+        </expression>
+      </matchRules>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="48456781-aa04-461e-a031-0a5a1ac6c8e8">
+    <annotation></annotation>
+    <name>Field 1</name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="4cb76e4f-c1ad-4ae4-abd0-dfb8520b728a">
+    <baseIcon>branch_element.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

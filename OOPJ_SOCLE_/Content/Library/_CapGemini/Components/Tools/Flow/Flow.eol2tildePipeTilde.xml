@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="affa9330-ef15-4cc8-948e-94abc19f0ace">
+  <descriptionCdata><![CDATA[affa9330-ef15-4cc8-948e-94abc19f0ace.description=Remplace les EOL (ie. '\\n',\\r\\n'')  contenus dans la variable  assign\u00E9e \u00E0 field_1 par '~|~'.\n\nCeci permet entre autre d'\u00E9changer du contenu pr\u00E9sent\u00E9 sur plusieurs lignes avec des scripts RAS ou OGFS.
+]]></descriptionCdata>
+  <annotation>affa9330-ef15-4cc8-948e-94abc19f0ace.description</annotation>
+  <name>Flow.eol2tildePipeTilde</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="3b64e5f5-b2e1-4631-a326-93b40586b462">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>field1</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="990ec778-8134-4dc0-bce6-62c9c326afbb">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_3</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field3}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="fbacc376-f9f9-4a6b-9529-96945a431b42">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_4</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field4}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f2426c67-6184-41ed-be13-efeccefff38a">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_1</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field1}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="b425afe4-9ebb-415b-b171-aae768fe8dc8">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_2</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field2}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="08158ec5-a721-4f35-b008-6aad9d8a1669">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="671c4ae6-4dc2-4d38-8937-28d13ac5653d">
+      <annotation></annotation>
+      <name>O_eol2~|~</name>
+      <fieldName>Field_1</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <replaceAllFilter id="7f232557-718f-4bc5-b045-e13ccbc4e03d">
+          <annotation></annotation>
+          <name>Replace</name>
+          <ignoreCase>false</ignoreCase>
+          <searchString>
+</searchString>
+          <replaceString>~|~</replaceString>
+          <replaceType>ALL</replaceType>
+        </replaceAllFilter>
+      </filters>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="daa35c6d-29f6-4ff5-a938-4fa568d8ce8d">
+    <annotation></annotation>
+    <name></name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="82c1e436-b428-4c81-951e-f41806485c7d">
+    <baseIcon>wrench2.png</baseIcon>
+    <basePath>/Utilities/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

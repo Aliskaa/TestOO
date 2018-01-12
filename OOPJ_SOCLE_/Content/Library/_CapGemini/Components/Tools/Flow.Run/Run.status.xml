@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="daa366e5-fafd-41dc-ae2e-e5931c8ef004">
+  <descriptionCdata><![CDATA[daa366e5-fafd-41dc-ae2e-e5931c8ef004.description=<pre>\nCette op\u00E9ration permet de d\u00E9terminer le status d'ex\u00E9cution d'un flow.\n\nInputs\:\n--------------------------------\nstatus \:\t\tstatus d'ex\u00E9cution du flow\n\nOutputs\:\n--------------------------------\nN/A\n\nResponses\:\n--------------------------------\nENDEDORFINISHED \: \tL'ex\u00E9cution du flow est termin\u00E9e\nRUNNING \: \t\tL'ex\u00E9cution du flow est en cours\nCANCELED \: \t\tL'ex\u00E9cution du flow est annul\u00E9e\nPAUSED \: \t\tL'ex\u00E9cution du flow est suspendue\nUNKNOWN \: \t\tLe statut d'ex\u00E9cution du flow est inconnu\n</pre>
+]]></descriptionCdata>
+  <annotation>daa366e5-fafd-41dc-ae2e-e5931c8ef004.description</annotation>
+  <name>Run.status</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="8963bbb6-a070-4ef7-8b59-48be684c88ec">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>status</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="50557aa5-551b-4767-9492-802499bc9eb6">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_3</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field3}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="e4557216-dad8-45e8-ad7a-71eee6e11d14">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_4</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field4}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="09bf42fd-1a5c-4379-86ff-17f46660b2e0">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_1</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${status}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="2c27097e-edaa-4f83-8245-f6e4f9ebb30c">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_2</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field2}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="a5cfb482-ba96-45af-8d9b-054187349038">
+      <annotation></annotation>
+      <name>ENDEDORFINISHED</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="d2c33a12-5184-4d3b-b348-6373404e2c58">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="0e2f89d5-f9b4-4bcb-a0c5-4fe8c87c2603">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>EndedOrFinished</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="7d8c0fe8-c702-4c6e-9627-6131a169a451">
+      <annotation></annotation>
+      <name>RUNNING</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>DIAGNOSED</type>
+      <matchRules>
+        <expression id="1c7ee02f-709a-4ffb-b694-d818da5aa820">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="b8298fdb-adba-4e57-8740-98b141eecfbf">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>Running</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="785d36a8-35f6-400a-a46d-197ab67d8e05">
+      <annotation></annotation>
+      <name>CANCELED</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules>
+        <expression id="a2667e4e-1f5a-401d-8c3b-193cd0c3d7d2">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="3456b94b-8483-4aa5-9484-08a89bf1fa46">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>Canceled</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="31743e13-5031-4fca-8478-4dd2466cda56">
+      <annotation></annotation>
+      <name>PAUSED</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules>
+        <expression id="14a57b4f-de0a-415e-8530-829cd1c71573">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="d859dbaf-2b98-418a-b2c0-95ecf863e76e">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>Paused</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="218afc40-bcd0-40f7-ba3a-be35e3366d6a">
+      <annotation></annotation>
+      <name>UNKNOWN</name>
+      <isDefault>true</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="155a8456-ec31-4918-ae27-0871cd2b449e">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="c97c7c65-40f3-4a9c-b765-63f49d5297e7">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>Unknown</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="80eab4f9-d25a-4d78-a6a0-d404d18c2a96">
+    <annotation></annotation>
+    <name></name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="b303b7d9-0fb8-47a7-8a54-51182b46fed2">
+    <baseIcon>branch_element.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

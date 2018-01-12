@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="9a8af005-9308-4157-9f13-305df4c21c37">
+  <descriptionCdata><![CDATA[9a8af005-9308-4157-9f13-305df4c21c37.description=pre>\nCette op\u00E9ration permet de d\u00E9terminer la source de d\u00E9clenchement du flow (VTOM/USD/CSA)\n\nInputs\:\n--------------------------------\nexecution_userid \:\t\tID du user ex\u00E9cutant le flow\n\nOutputs\:\n--------------------------------\nN/A\n\nResponses\:\n--------------------------------\nVTOM\nUSD\nCSA\nUNKNOWN\n\n</pre>
+]]></descriptionCdata>
+  <annotation>9a8af005-9308-4157-9f13-305df4c21c37.description</annotation>
+  <name>CSA.logMessage.selectFlowSource</name>
+  <categories/>
+  <inputs>
+    <userInputBinding id="b1603ab8-3f60-4ea8-8064-ec665fda6966">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>execution_userid</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+    <staticBinding id="a019bf44-5f45-4cd3-9c86-3392b66ea254">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_1</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${execution_userid}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="942fd49a-f18c-4520-adaa-b33643392245">
+      <annotation></annotation>
+      <name>CSA</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="e895edf6-fc15-48cf-beb3-792f8d8ddaf4">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="490034cf-8c07-4862-9d4b-859ddde225f6">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>admin</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="841e1a8c-ec6c-49cd-9abd-51a32ecac215">
+      <annotation></annotation>
+      <name>USD</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="ac3db591-0c50-4650-a933-b3c321833c04">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="6368881a-26d8-472c-9209-449ca7e379c9">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>fdom\svc-oo4usd-thor-prod svc-oo4usd-thor-prod</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>MATCH_AT_LEAST_ONE_WORD</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="2b44782a-602a-4a09-828b-35522f598998">
+      <annotation></annotation>
+      <name>VTOM</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="529f7e06-3145-4c5c-a10f-ee8a17da7b2d">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="e769d80a-add8-4100-9e27-43cd9f9f497a">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>vtom</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="4d548245-4e9f-4788-9aac-a2333c673e2e">
+      <annotation></annotation>
+      <name>UNKNOWN</name>
+      <isDefault>true</isDefault>
+      <onFailure>true</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules>
+        <expression id="7faf64c1-7f67-48e6-8925-1a94dd27d50c">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="e014dff8-71a7-40ec-827f-e56f77a51c06">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>admin vtom fdom\svc-oo4usd-thor-prod svc-oo4usd-thor-prod</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>MATCH_NONE_OF_THE_WORDS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="1466a4f7-23e0-47df-9bf6-2102088193cf">
+    <annotation></annotation>
+    <name>Field 1</name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="69c17580-0fa4-4164-a92c-d0e18c585da5">
+    <baseIcon>branch_element.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

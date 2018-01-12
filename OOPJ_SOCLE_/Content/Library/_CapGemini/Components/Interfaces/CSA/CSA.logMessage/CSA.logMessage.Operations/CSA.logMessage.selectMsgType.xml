@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="81c01b3e-fdb5-4826-aa69-9b4275f517a7">
+  <descriptionCdata><![CDATA[81c01b3e-fdb5-4826-aa69-9b4275f517a7.description=pre>\nCette op\u00E9ration permet de g\u00E9n\u00E9rer un ent\u00EAte de message en fonction du type du message en entr\u00E9e.\n\nInputs\:\n--------------------------------\ntypeMsgToDisplay \:\t\tType du message\n\nOutputs\:\n--------------------------------\nResult\:\t\t\tEnt\u00EAte format\u00E9e\n\nResponses\:\n--------------------------------\n\n</pre>
+]]></descriptionCdata>
+  <annotation>81c01b3e-fdb5-4826-aa69-9b4275f517a7.description</annotation>
+  <name>CSA.logMessage.selectMsgType</name>
+  <categories/>
+  <inputs>
+    <userInputBinding id="c7870ea2-9b6a-48d0-b53d-f4c6a2689d99">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>typeMsgToDisplay</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+  </inputs>
+  <scriptlet id="18585f3d-0163-4e72-a033-de348fada4b5">
+    <annotation></annotation>
+    <name>Operation CSA.logMessage.selectMsgType (9a930450-39b1-43c8-839c-fd21f84ac383)</name>
+    <script>
+if (typeMsgToDisplay.toLowerCase() == &quot;e&quot;)
+{
+	scriptletResult = &quot;&lt;b&gt;&lt;font color=&apos;red&apos;&gt;[ERROR]&lt;/font&gt;&lt;/b&gt;&quot;;
+	scriptletResponse = &quot;success&quot;;
+}
+else if (typeMsgToDisplay.toLowerCase() == &quot;w&quot;)
+{
+	scriptletResult = &quot;&lt;b&gt;&lt;font color=&apos;orange&apos;&gt;[WARNING]&lt;/font&gt;&lt;/b&gt;&quot;;
+	scriptletResponse = &quot;success&quot;;
+}
+else
+{
+	scriptletResult = &quot;&lt;b&gt;&lt;font color=&apos;green&apos;&gt;[INFO]&lt;/font&gt;&lt;/b&gt;&quot;;
+	scriptletResponse = &quot;success&quot;;
+}
+</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="a7b53255-1f90-4788-8aae-6c4cdcbf3e29">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>true</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="8ffc2d7e-b7b6-435d-8639-9431f542e969">
+    <annotation></annotation>
+    <name>Field 1</name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="44533987-fc69-43f7-8d0b-7c3c3f694afa">
+    <baseIcon>text_code_javascript.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

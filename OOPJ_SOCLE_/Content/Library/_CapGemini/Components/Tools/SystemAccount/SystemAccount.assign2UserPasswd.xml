@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5">
+  <descriptionCdata><![CDATA[b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5.2a30f45b-b784-4b37-8e62-1344fdadd3ba.prompt=Enter password
+b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5.ab245fe0-c217-435e-8355-d204452dcbca.prompt=Enter username
+b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5.description=<pre>This is an operation that does nothing. It can be used for filtering flow variables by feeding them in as inputs and filtering them on the results tab.\n\nInputs\:\nfield1 - optional input that can be used for filtering flow variables.\nfield2 - optional input that can be used for filtering flow variables.\nfield3 - optional input that can be used for filtering flow variables.\nfield4 - optional input that can be used for filtering flow variables.\n\nResponses\:\nsuccess - this operation never fails.\n</pre>
+]]></descriptionCdata>
+  <annotation>b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5.description</annotation>
+  <name>SystemAccount.assign2UserPasswd</name>
+  <categories/>
+  <inputs>
+    <userInputBinding id="ab245fe0-c217-435e-8355-d204452dcbca">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>ENCRYPTED</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>username</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <prompt>b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5.ab245fe0-c217-435e-8355-d204452dcbca.prompt</prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter></sourceDelimiter>
+    </userInputBinding>
+    <userInputBinding id="2a30f45b-b784-4b37-8e62-1344fdadd3ba">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>ENCRYPTED</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>password</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <prompt>b8e63f8e-966f-4d3b-8db1-7bdf62c8cab5.2a30f45b-b784-4b37-8e62-1344fdadd3ba.prompt</prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter></sourceDelimiter>
+    </userInputBinding>
+    <staticBinding id="3b62c85e-f015-411b-9ce3-4f7a414d26ad">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_3</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field3}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="f5804855-ac03-4cf5-a02a-b3b6f4b5cfa2">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_4</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field4}</value>
+      <record>false</record>
+    </staticBinding>
+    <userInputBinding id="be06fc9f-16f4-446c-a197-7f28982f13b4">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey>username</fromContextKey>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_1</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <record>false</record>
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+    <userInputBinding id="751decb3-2be1-492b-89d9-7f8df5daaf2b">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey>password</fromContextKey>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_2</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <record>false</record>
+      <prompt></prompt>
+      <isMultiSelect>false</isMultiSelect>
+      <sourceDelimiter>|</sourceDelimiter>
+    </userInputBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="ea83f171-3e21-405e-b903-4a76ab3a82fd">
+      <annotation></annotation>
+      <name>R_cred.success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="526ae23d-0a72-462c-90d7-1e5a91798f18">
+      <annotation></annotation>
+      <name>R_cred.undefinedUsername</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="07bb9c80-b75b-4eae-8c67-5b6e60202ff7">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_1</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <compare id="4e3b52c1-deff-44d0-9d50-0ddc6e7ac276">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text></text>
+            <matchType>=</matchType>
+          </compare>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="1cb34674-a695-4f9b-b3e3-889c5a432b7f">
+      <annotation></annotation>
+      <name>R_cred.undefinedPassword</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="0d7b81ee-1f25-4585-aec8-744109b1ba37">
+          <annotation></annotation>
+          <name>Field 1</name>
+          <fieldName>Field_2</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <compare id="d2a7d2f0-9928-4ac4-aef0-a82dbc017611">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text></text>
+            <matchType>=</matchType>
+          </compare>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="c47b67ad-4f1d-4d0d-8bb3-b26605722e0e">
+      <annotation></annotation>
+      <name>O_cred.password</name>
+      <fieldName>Field_2</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="e7508e09-62c8-4a53-b369-060b675d9cea">
+      <annotation></annotation>
+      <name>O_cred.username</name>
+      <fieldName>Field_1</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="c81fd44a-2358-44f7-9c30-6b9007179ffa">
+    <annotation></annotation>
+    <name></name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="fae19a8b-9b7f-416d-86f2-e7552ccf4668">
+    <baseIcon>atom.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

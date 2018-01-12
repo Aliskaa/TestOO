@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="fac53a76-50a5-4713-822c-8b3115271f2e">
+  <descriptionCdata><![CDATA[fac53a76-50a5-4713-822c-8b3115271f2e.description=Iterateur sur une liste (chaine de valeurs s\u00E9par\u00E9es par le caract\u00E8re ';') de noms de serveurs.\nLa liste est initialis\u00E9e avec le contenu d'un SystemProperty dont le nom est pass\u00E9 en input.\n\nA chaque iteration, le nom du serveur s\u00E9lectionn\u00E9 est retourn\u00E9 dans la variable de flow O_memberSelected\nLe contenu de la liste des serveurs non encore s\u00E9lectionn\u00E9 est stock\u00E9 dans la variable de flow O_membersNotYetSelected.\n\n\nInputs \:\nI_hostsList\n\nOutputs \:\nO_hostrSelected\nO_hostsNotYetSelected\n\nResponses \:\nS_hostSelected \: si un nom de serveur a pu \u00EAtre propos\u00E9.\nS_hostNoMore \: s'il n'existe plus de nom de serveur \u00E0 proposer.\nE_other \: si erreur dans l'op\u00E9ration.
+]]></descriptionCdata>
+  <annotation>fac53a76-50a5-4713-822c-8b3115271f2e.description</annotation>
+  <name>OOOP_CoreHostSelector</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="17429350-12ab-4f58-b6b8-59ca7f92cc65">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>true</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_hostsRandom_list</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>${OOSP.HPSA.coreHostsList}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <scriptlet id="e03f60f8-fbd0-4704-b230-f3110def2693">
+    <annotation></annotation>
+    <name>Operation OOOP_CoreHostSelector (fe3154d9-1f94-4e90-89fd-aa28e3c83e3e)</name>
+    <script>// **********************************************************************************
+// Coeur de l&apos;it&#233;rateur.
+// Historique :
+//	15/12/2014		D.MARION
+//
+// **********************************************************************************
+try {
+// La liste des membres du cluster est m&#233;moris&#233;e dans C_SAcoreListToTest
+_hostsToSelect = scriptletContext.get(&quot;F_hostsRandom.notYetSelected&quot;);
+
+// Si liste des CORE vide, initialisation avec contenu de l&apos;input I_hostsRandom_list
+if (_hostsToSelect == null || _hostsToSelect == &quot;__NO_MORE__&quot;) {
+	_hostsToSelect=scriptletContext.get(&quot;I_hostsRandom_list&quot;); 
+}
+
+_hostsList = _hostsToSelect.split(&quot;;&quot;);
+_hostsNbr = _hostsList.length
+if ( _hostsNbr == 1 &amp;&amp; _hostsList[0] == &quot;&quot; ) { _hostsNbr = 0 }
+
+if ( _hostsNbr == 0 ) {
+
+	// Plus de membres
+	_hostSelected = &quot;&quot;
+	_hostsNotYetSelected = &quot;__NO_MORE__&quot;
+	
+	scriptletResponse = &quot;S_hostNoMore&quot;;
+
+} else {
+	// Extraire &apos;au hasard&apos; un CORE de la liste _coreListToTest
+	_next = java.util.Random().nextInt( _hostsNbr);
+
+	// Le mettre dans _hostSelected et le retirer de _hostsList
+	_hostSelected = _hostsList[_next];
+	// TODO : &#224; am&#233;liorer.  _hostsList.splice(_next,1) a un comportement bizarre
+	var _hostsNotYetSelected = new Array()
+	for (_core in _hostsList) {
+		if (_core != _next ) { 
+			_hostsNotYetSelected.push(_hostsList[_core])
+		}
+	}
+	_hostsNotYetSelected = _hostsNotYetSelected.join(&quot;;&quot;)
+
+	scriptletResponse = &quot;S_hostSelected&quot;;
+}
+scriptletContext.putGlobal(&quot;O_hostsRandom.selected&quot;, _hostSelected); 
+scriptletContext.putGlobal(&quot;F_hostsRandom.notYetSelected&quot;, _hostsNotYetSelected); 
+
+ 
+
+} 
+catch (e) {
+	// TODO : Voir comment remonter le d&#233;tail de l&apos;erreur
+	scriptletResult = &quot;Exception&quot; + e
+	scriptletResponse = &quot;E_other&quot;;
+}
+</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="1b45e02d-b1be-460d-9cb5-7e3977c81f79">
+      <annotation></annotation>
+      <name>S_hostSelected</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="d26aa227-4302-44f9-9a22-b9d1619eff52">
+      <annotation></annotation>
+      <name>S_hostNoMore</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="dd4469dd-6476-4e48-a1ba-541fc1474f30">
+      <annotation></annotation>
+      <name>E_other</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="b48f2515-1fc2-4b9b-86bf-c85144e95d95">
+      <annotation></annotation>
+      <name>F_hostsRandom.notYetSelected</name>
+      <fieldName>Field_2</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="ffb7420e-4fd8-4bf1-81b8-539f1a42e276">
+      <annotation></annotation>
+      <name>O_hostsRandom.selected</name>
+      <fieldName>Field_1</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="bbbc4d73-14a7-4de7-a31e-cf2d6a62dd4a">
+    <annotation></annotation>
+    <name>Field 1</name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="33767ae9-307d-4c8c-ac64-21df1a188bc0">
+    <baseIcon>node.png</baseIcon>
+    <basePath>/Servers/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

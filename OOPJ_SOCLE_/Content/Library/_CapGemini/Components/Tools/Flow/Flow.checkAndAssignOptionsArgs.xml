@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="b3a45eeb-54e5-4b48-b2d8-ffb21f27f723">
+  <descriptionCdata><![CDATA[b3a45eeb-54e5-4b48-b2d8-ffb21f27f723.description=Permet de \:\n- cont\u00F4ler que des variables requises sont correctement renseign\u00E9es ;\n- constiuer une liste d'options arguments (pour passer \u00E0 un script RAS par exemple)\n\n\nContruit la variable O_scriptOptionsArgs\n\n
+]]></descriptionCdata>
+  <annotation>b3a45eeb-54e5-4b48-b2d8-ffb21f27f723.description</annotation>
+  <name>Flow.checkAndAssignOptionsArgs</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="d4e55f41-2a7e-4da2-9074-f4ccad024787">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>true</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_varsThatMustNotBeNull</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="af1c27a5-f34a-437a-a636-14210a073e49">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>true</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_vars2optionsWithArgs</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8fc30a7a-4c19-41ec-9584-e776df166bba">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>true</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_vars2optionsWithoutArgs</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <scriptlet id="8f82cd7d-df55-4fbe-a115-7bbac984b39c">
+    <annotation></annotation>
+    <name>Operation Flow.checkAndAssignOptionsArgs (da048110-14b4-4722-90b2-4f9fc82a9829)</name>
+    <script>//
+//
+function checkIsNull(pVarName) {
+	// Teste si une variable existe et est renseign&#233;e
+	// Consid&#232;re que la valeur UNDEFINED vaut non renseign&#233;e
+	if ( pVarName == &quot;&quot; ) { return false;}
+	
+	var _myVar = scriptletContext.get(pVarName);
+	
+	if ( _myVar == null ||  _myVar == &quot;&quot; ||  _myVar == &quot;__UNDEFINED__&quot; ) {
+		_myVar = &quot;undefined or not set&quot;;
+		_stderr += &quot;\nVariable &gt;&quot; + pVarName + &quot;&lt; = &quot; + _myVar;
+		_check = true;
+	} else {
+		_check = false;
+	}
+	_stdout += &quot;\nVariable &gt;&quot; + pVarName + &quot;&lt; = &quot; + _myVar;
+	return _check;
+}
+
+function assign2OptionsArgs(pVarName, pOptionOnly) {
+	// 
+	if ( pVarName == &quot;&quot; ) { return &quot;&quot;;}
+	
+	var _myVar = scriptletContext.get(pVarName);
+	var _option = &quot;--&quot; + pVarName.substring(2)
+	
+	if ( _myVar != null &amp;&amp;  _myVar != &quot;&quot; &amp;&amp;  _myVar != &quot;__UNDEFINED__&quot; ) {
+		if ( pOptionOnly == true ) {
+			_myOption =  &quot; &quot; + _option;
+		} else { 
+			_myOption =  &quot; &quot; + _option + &quot; \&quot;&quot;  +  _myVar + &quot;\&quot;&quot;;
+		}
+	} else {
+		_myOption = &quot;&quot;;
+	}
+	_stdout += &quot;\nSet option &gt;&quot; + _myOption + &quot;&lt;&quot;;
+	return _myOption  
+}
+ 
+
+_stdout = &quot;&quot;;
+_stderr = &quot;&quot;;
+_options=&quot;&quot;
+
+scriptletResponse = &quot;success&quot;;
+
+
+if ( ! checkIsNull(&quot;I_varsThatMustNotBeNull&quot;) ) {
+	_varsThatMustNotBeNull = I_varsThatMustNotBeNull.split(&quot;;&quot;)
+	for ( _idx in _varsThatMustNotBeNull ) {
+		if ( checkIsNull(_varsThatMustNotBeNull[_idx]) ) {
+			scriptletResponse = &quot;failure&quot;;
+		}
+	}
+}
+if ( ! checkIsNull(&quot;I_vars2optionsWithArgs&quot;) ) {
+	_vars2optionsWithArgs = I_vars2optionsWithArgs.split(&quot;;&quot;)
+	for ( _idx in _vars2optionsWithArgs ) {
+		_options += assign2OptionsArgs(_vars2optionsWithArgs[_idx], false) 
+	}
+}
+if ( ! checkIsNull(&quot;I_vars2optionsWithoutArgs&quot;) ) {
+	_vars2optionsWithoutArgs = I_vars2optionsWithoutArgs.split(&quot;;&quot;)
+	for ( _idx in _vars2optionsWithoutArgs ) {
+		_options += assign2OptionsArgs(_vars2optionsWithoutArgs[_idx], true)
+	}
+}
+_stdout += &quot;\n\nOptions : &quot; + _options;
+// Cf. scriplets associ&#233;s aux Outputs O_xxx
+scriptletContext.put(&quot;F_scriptOptionsArgs&quot;, _options );
+scriptletContext.put(&quot;F_stdout&quot;, _stdout );
+scriptletContext.put(&quot;F_stderr&quot;, _stderr );
+
+// Choisir ici si Result doit contenir le r&#233;sultat du script OU la trace du traitement
+scriptletResult = _options;
+
+
+</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="bf56507d-9836-4ebb-ad10-0cfe1fff3032">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="512a9e3f-ea6f-40e8-bf31-5f7f0f23aace">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="094aac51-21fd-48c8-911a-9512e0c91b66">
+      <annotation></annotation>
+      <name>O_opStderr</name>
+      <fieldName>Field_1</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <scriptletFilter id="0334ada6-9797-426a-b456-796a13e3b9bd">
+          <annotation></annotation>
+          <name>Scriptlet</name>
+          <scriptlet id="f5f5ac5e-efe8-45d8-a5db-a99cf6c6ee49">
+            <annotation></annotation>
+            <name>default</name>
+            <script>scriptletResult = scriptletContext.get(&quot;F_stderr&quot;);</script>
+            <type>RHINO</type>
+          </scriptlet>
+        </scriptletFilter>
+      </filters>
+    </expression>
+    <expression id="48857f3e-f527-47a8-a76f-a459f95a17b1">
+      <annotation></annotation>
+      <name>O_opStdout</name>
+      <fieldName>Field_1</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <scriptletFilter id="db37f3d6-f40c-47f2-ad56-e8a7b9c772a8">
+          <annotation></annotation>
+          <name>Scriptlet</name>
+          <scriptlet id="e2c020f3-7a37-4306-a3c6-9c29e920c5f3">
+            <annotation></annotation>
+            <name>default</name>
+            <script>scriptletResult = scriptletContext.get(&quot;F_stdout&quot;);</script>
+            <type>RHINO</type>
+          </scriptlet>
+        </scriptletFilter>
+      </filters>
+    </expression>
+    <expression id="a376c2ac-e291-49c3-9b16-98bbd374cc3b">
+      <annotation></annotation>
+      <name>O_scriptOptionsArgs</name>
+      <fieldName>Field_1</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <scriptletFilter id="5eb60c1d-339b-4bfd-a5ab-a0d81db97fcd">
+          <annotation></annotation>
+          <name>Scriptlet</name>
+          <scriptlet id="1d64c4a6-4f26-48be-8cb3-63f2d401a23e">
+            <annotation></annotation>
+            <name>default</name>
+            <script>scriptletResult = scriptletContext.get(&quot;F_scriptOptionsArgs&quot;);
+</script>
+            <type>RHINO</type>
+          </scriptlet>
+        </scriptletFilter>
+      </filters>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="947be449-f661-4858-8593-2d56f6b1c060">
+    <annotation></annotation>
+    <name></name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="4a2f0c03-2428-4e78-a164-6f2d99f3157f">
+    <baseIcon>text_code_javascript.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="9c1438ea-6cba-4d0a-9571-53c0ebf6b7a7">
+  <descriptionCdata><![CDATA[9c1438ea-6cba-4d0a-9571-53c0ebf6b7a7.description=Contr\u00F4le la valeur de plusieurs variables. Les noms des variables sont pass\u00E9s en param\u00E8tre\n\nSi la valeur d'une variable vaut \:\n\t- null (ind\u00E9finie)\n\t- vide ("")\n\t- "__UNDEFINED__"\nle contr\u00F4le sort en erreur.\n
+]]></descriptionCdata>
+  <annotation>9c1438ea-6cba-4d0a-9571-53c0ebf6b7a7.description</annotation>
+  <name>Variable.checkFromNamesList</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="178a90bc-0fc7-4928-805e-444b5eee5fbb">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_variablesList</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4891fbd4-23d4-4e48-9e48-7def8bee4e33">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_3</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field3}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="82b34509-0a30-4afb-8c36-f19e6bfa031d">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_4</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field4}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="14da0c93-75ed-465f-a7b8-702128f85b9e">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_1</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field1}</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="4d3d3f24-3b27-4bb3-b0a4-f8aaaad2bcc5">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <recordKey></recordKey>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>Field_2</inputSymbol>
+      <listDelimiter></listDelimiter>
+      <value>${field2}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <scriptlet id="dba98227-3e7e-4af1-a6aa-ae3b8e1d69fe">
+    <annotation></annotation>
+    <name>Operation Variable.checkFromNamesList (4a8fad86-1968-4bbf-a486-9250b3e7ad22)</name>
+    <script>//
+//
+function checkIsNull(pVarName) {
+	// Teste si une variable existe et est renseign&#233;e
+	// Consid&#232;re que la valeur UNDEFINED vaut non renseign&#233;e
+	var _myVar = scriptletContext.get(pVarName);
+	
+	if ( _myVar == null ||  _myVar == &quot;&quot; ||  _myVar == &quot;UNDEFINED&quot; ) {
+		scriptletResult += &quot;\n\tVariable &gt;&quot; + pVarName + &quot;&lt; ind&#233;finie ou non renseign&#233;e&quot;;
+		return true;
+	}
+	scriptletResult += &quot;\n\tVariable &gt;&quot; + pVarName + &quot;&lt; = &quot; + _myVar;
+	return false;
+}
+
+scriptletResult=&quot;Contr&#244;le variables :&quot;;
+scriptletResponse = &quot;R_check.success&quot;;
+
+var _varNames = scriptletContext.get(&quot;I_variablesList&quot;)
+if ( _varNames == &quot;__UNDEFINED__&quot; ) {
+	scriptletResult += &quot;Liste des noms de variables vide.&quot;;
+	scriptletResponse = &quot;R_check.success&quot;;
+} else {
+
+	_varNames = _varNames.split(&quot;;&quot;)
+
+	for ( _idx in _varNames ) {
+
+		if ( checkIsNull(_varNames[_idx]) ) {
+			
+			scriptletResponse = &quot;R_check.failure&quot;;
+		}
+	}
+}
+</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="26647568-d737-4326-967e-41c43c230e37">
+      <annotation></annotation>
+      <name>R_check.success</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="6e77c461-d220-4085-876a-b0026f78103b">
+      <annotation></annotation>
+      <name>R_check.failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="a327bd16-7ec9-4b6c-86b8-23edd5262163">
+    <annotation></annotation>
+    <name></name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="d8e6cb9d-d2ea-4df6-b6cd-b9e29c0229bd">
+    <baseIcon>text_code_javascript.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

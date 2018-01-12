@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="1a51d433-7841-41a8-b759-c6978c3bb7da">
+  <descriptionCdata><![CDATA[1a51d433-7841-41a8-b759-c6978c3bb7da.description=<pre>Runs an SSH command\n\nInputs\:\nhost - Hostname or ip address.\nport - The port number for running the command. It overwrites the port given inside the host input -in a syntax like host\:port-, if this exists.\ncommand - The command to execute.\narguments - The arguments to pass to the command.\npty - Whether to use pty (true, false. Default is false).\nprivateKeyFile - Path to private key file, relative to ICONCLUDE_HOME on the RAS.\nusername - Username to connect as.\npassword - Password of user. If using a private key file this will be used as the passphrase for the file.\ntimeout - Time in milliseconds to wait for the command to complete (optional, default 90 seconds).\ncharacterSet - The characterSet name for input stream encoding from the target machine. For example, SJIS, EUC-JP, UTF-8.  By default it is UTF-8. \ncloseSession - Close SSH session at completion of this operation (true, false)? If false the ssh session will be cached for future calls of this operation during the life of the flow. If true the ssh session used by this operation will be closed. Default is true.\n\n\nOutputs\:\nO_sshStderr\t \: contenu de stdout\nO_sshStdout  \: contenu de stderr\t\nO_sshLogs\t \: structure XML contenant des logs par destinataires <LOGS><LOGS_CST>....</LOGS_CST> .... <LOGS_UNIXNO> ....</LOGS_UNIXNO></LOGS>\nO_sshDatas\t \: structure XML contenant dictionnaire de donn\u00E9es  <DATAS><DATA1>....</DATA1> .... <DATAn> ....</DATAn></DATAS>\n\n\nResponses\:\nS_commandSuccess\t\nE_unknownHost\t\nE_credentialFailed\t\nE_connectionRefused\t\nE_connectionTimeOut\t\nE_portOutOfRange\t\nE_commandFailure\t\n\n\n</pre>
+]]></descriptionCdata>
+  <annotation>1a51d433-7841-41a8-b759-c6978c3bb7da.description</annotation>
+  <name>Ssh.sshCommand</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="caf45ef0-0c2c-4934-8f57-056820462f40">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>host</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>unknownHost</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="a764400c-a6b4-4423-ab9a-387eba712fc8">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>port</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>22</value>
+      <record>false</record>
+    </staticBinding>
+    <loggedUserIdentityBinding id="dce6d34b-3db2-4d98-888b-8b70f9b827b6">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>ENCRYPTED</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>username</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <identityAttribute>USERNAME</identityAttribute>
+    </loggedUserIdentityBinding>
+    <loggedUserIdentityBinding id="a7c570c0-3c68-4178-b2fe-fa5180b0c19d">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>ENCRYPTED</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>password</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <record>false</record>
+      <identityAttribute>PASSWORD</identityAttribute>
+    </loggedUserIdentityBinding>
+    <staticBinding id="1da8884a-d4cf-45fb-8a45-1e3fcca0768c">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>privateKeyFile</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="6626711a-8828-4a8f-b173-bdaeb5b58c11">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>pty</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>false</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="319aaca7-dc57-4143-b1f5-bde0e4efc42d">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>command</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>uname</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="bea05fc7-0eaf-4dbf-8000-f19e8feb2c40">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>arguments</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="fc77e08b-1819-4a40-b9aa-9b160cc758f6">
+      <annotation></annotation>
+      <toContextKey></toContextKey>
+      <fromContextKey></fromContextKey>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>timeout</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>3600000</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="8e06e481-223e-4a8c-b1e2-8bc0865a82c8">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>characterSet</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value></value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="33b3c184-f899-4e8e-8020-f987b2f9d641">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>closeSession</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>true</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <scriptlet id="cedf0c44-312b-43e4-9930-21bc102efbdb">
+    <annotation></annotation>
+    <name>Operation Ssh.sshCommand (16a43e0b-2b6f-4827-b1a3-87df3d09c1a0)</name>
+    <script>
+        	scriptletContext.put(&quot;STDERR&quot;, scriptletRawResult[&apos;STDERR&apos;]);
+        	scriptletContext.put(&quot;STDOUT&quot;, scriptletRawResult[&apos;STDOUT&apos;]);
+        </script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="ba11b53b-6947-40f0-87ba-414647822b75">
+      <annotation></annotation>
+      <name>S_commandSuccess</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="197a3aef-c16c-498e-8612-4852bc9880ad">
+          <annotation></annotation>
+          <name>returnCode</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="4f80e8f4-b3c5-4f6a-83ec-baf30a66712c">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>0</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="07c13b60-afa0-4c4b-b091-916bddf4ae74">
+      <annotation></annotation>
+      <name>E_unknownHost</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="01395280-cbb0-4345-973d-07d96b114a57">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>exception</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="5d01a2ff-7f25-4a2b-be6f-f110d5e9ad32">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>java.net.UnknownHostException</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>CONTAINS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+        <expression id="5ceb363a-751e-410b-af17-84d92df02fb2">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="e51e3f65-8908-44ad-8ced-29f1e78eeb2e">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>ALWAYS_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="808b6789-cb4c-482b-bf7e-4fbb0e3623f5">
+      <annotation></annotation>
+      <name>E_credentialFailed</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="604dea78-23fb-463e-aae2-17f2f521e601">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="4ec0002a-c757-4fd5-88bc-439de0f56879">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>ALWAYS_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+        <expression id="8c637e5e-86be-4b07-af1a-6535ee91aabc">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>exception</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="22f799c4-82d5-4803-8252-0044fd07c8f2">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>com.jcraft.jsch.JSchException: Auth fail</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>CONTAINS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="f47a66c2-70c2-42b4-87ff-d56009af8961">
+      <annotation></annotation>
+      <name>E_connectionRefused</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="e213a3f1-6530-4149-bd45-00a58e6c73ba">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="9392b82a-ed3c-41b4-b5fb-4fea1c170762">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>ALWAYS_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+        <expression id="98b6b5d7-74d7-4252-8479-ed688166d4b4">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>exception</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="58629dc3-457e-4c79-a75b-722853a6f796">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>com.jcraft.jsch.JSchException: Connection refused:</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>CONTAINS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="1ad08825-96c9-4fc0-83b1-8438368c4848">
+      <annotation></annotation>
+      <name>E_connectionTimeOut</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="457c893f-4ce2-4863-bcdb-1a0096bc6aaa">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="78b4ddb9-94dd-4db6-a453-2f98cd7ffa4e">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>ALWAYS_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+        <expression id="4cdfb574-198a-4153-a388-903791cd3902">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>FailureMessage</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="5157c9d6-31e4-4629-992d-edb61f7619ca">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>java.net.ConnectException: Connection timed out: connect</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>CONTAINS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="f78149f7-c25c-4659-b86b-36c4b26ae9a5">
+      <annotation></annotation>
+      <name>E_portOutOfRange</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="70e77df5-2aee-4896-9f6e-1fe457f83755">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="3d3dc388-7ae2-4fc2-a568-6391d4a2eae2">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>ALWAYS_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+        <expression id="970b855a-6cba-4792-8d36-d30afde9fc92">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>exception</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="8c55abb2-683a-46a6-aed1-5f87a5174583">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>java.lang.IllegalArgumentException: port out of range</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>CONTAINS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="2e1b534e-bcd8-4090-8aec-bb33641d15db">
+      <annotation></annotation>
+      <name>E_commandFailure</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="7054f8be-3468-4b48-9479-1490729ac996">
+          <annotation></annotation>
+          <name>returnCode</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="bd57463d-4096-4a06-a7e5-3641e6c866a3">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>EXACT_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="5e8de376-27e0-4c78-8585-5201b423d348">
+      <annotation></annotation>
+      <name>E_centralTimeOut</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="e78c8a08-52b0-4fa1-be84-44977a6913b4">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>returnCode</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="08af7ad7-46ab-4ebb-a824-42d5b763397a">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>-1</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>ALWAYS_MATCH</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+        <expression id="2e9979f3-f743-4d14-a985-5f8cb7567d09">
+          <annotation></annotation>
+          <name>returnResult</name>
+          <fieldName>FailureMessage</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <containsEvaluator id="bd0f4041-9864-4885-ae9b-3b81b2138c08">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>java.net.SocketTimeoutException: Read timed out</text>
+            <ignoreCase>true</ignoreCase>
+            <matchType>CONTAINS</matchType>
+          </containsEvaluator>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="593f66a8-4f27-4cfa-afd6-6d944a6b482b">
+      <annotation></annotation>
+      <name>O_sshDatas</name>
+      <fieldName>STDOUT</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <selectLineFilter id="3498b2f1-ada5-4265-8622-f04c3730b450">
+          <annotation></annotation>
+          <name>Select Line</name>
+          <text>&lt;DATAS&gt;</text>
+          <type>FIRST_LINE_STARTING_WITH</type>
+          <autoSelectLineEnding>false</autoSelectLineEnding>
+          <windowsLineEnding>false</windowsLineEnding>
+          <unixLineEnding>true</unixLineEnding>
+        </selectLineFilter>
+      </filters>
+    </expression>
+    <expression id="f2faeb1a-8a41-4f38-a75c-94132f762c8a">
+      <annotation></annotation>
+      <name>O_sshLogs</name>
+      <fieldName>STDOUT</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters>
+        <stripTrailingFilter id="d170ec08-f9bf-4760-95d5-c78624365c4e">
+          <annotation></annotation>
+          <name>Strip</name>
+          <strip>&lt;LOGS&gt;</strip>
+          <type>ALL_CHARACTERS_UP_TO</type>
+        </stripTrailingFilter>
+        <stripTrailingFilter id="fa70aba0-b0a2-453e-9d40-9bd60ef9d197">
+          <annotation></annotation>
+          <name>Strip</name>
+          <strip>&lt;/LOGS&gt;</strip>
+          <type>ALL_CHARACTERS_AFTER</type>
+        </stripTrailingFilter>
+      </filters>
+    </expression>
+    <expression id="69cc564d-5f05-43eb-9739-bea9af7ef6cf">
+      <annotation></annotation>
+      <name>O_sshStderr</name>
+      <fieldName>STDERR</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+    <expression id="49724809-4d05-4760-87c1-5c9c75b83f23">
+      <annotation></annotation>
+      <name>O_sshStdout</name>
+      <fieldName>STDOUT</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="3559c6cd-f3d7-425f-b085-af352f85c037">
+    <annotation></annotation>
+    <name>returnCode</name>
+    <fieldName>returnResult</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="2d82a2e5-c0fb-48c6-a87f-daa90457da72">
+    <baseIcon>PowerShell.png</baseIcon>
+    <basePath>/Operating System/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>40581c53-826b-4299-8839-7454f2b1af6c</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+  <overrideGroupAlias>${overrideJRAS}</overrideGroupAlias>
+</operation>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="69fa2639-dc54-46b0-b742-efa5d3d0fab9">
+  <descriptionCdata><![CDATA[69fa2639-dc54-46b0-b742-efa5d3d0fab9.description=<pre>Retrieves a system account, and stores it to a flow variable.\n\nInputs\:\naccountName - The name of the system account to get\nflowVariable - The flow variable to store the system account in.\n\nResponses\:\nsuccess - The operation completed Successfully.\nfailure - Something went wrong.</pre>
+]]></descriptionCdata>
+  <annotation>69fa2639-dc54-46b0-b742-efa5d3d0fab9.description</annotation>
+  <name>SystemAccount.getFromName</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="f796ff85-e534-4680-b7a6-373bc7cc47ef">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>accountName</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+    <staticBinding id="bd46bd07-3e5c-49be-bb1d-5ec0ed9fcd68">
+      <annotation></annotation>
+      <assignFromContext>true</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>false</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>flowVariable</inputSymbol>
+      <listDelimiter>,</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <scriptlet id="99a5e3cb-9c5c-44a2-8978-aa52b35ff14d">
+    <annotation></annotation>
+    <name>Operation SystemAccount.getFromName (ec767b17-13db-4862-ae8c-ee29a8226039)</name>
+    <script>try {
+    // retrieve from the context the systemAccount username and password
+    username = scriptletContext.getSystemAccountUsername(accountName);
+    password = scriptletContext.getSystemAccountPassword(accountName);
+    if ((username!=null) &amp;&amp; (username.equals(&quot;&quot;))) {
+        scriptletResult = &apos;The provided system account does not exist.&apos;
+        scriptletResponse = &apos;failure&apos;
+    } else {
+                accountName = scriptletContext.get(&apos;flowVariable&apos;);
+                usernameVarName = accountName + &apos;Username&apos;;
+                passwordVarName = accountName + &apos;Password&apos;;
+   
+        scriptletContext.put(usernameVarName, username);
+        scriptletContext.put(passwordVarName, password);
+        scriptletResult = &apos;The username and the password were added in the context.&apos;
+        scriptletResponse = &quot;success&quot;;
+    }
+} catch (e) {
+    scriptletResponse = &quot;failure&quot;;
+    scriptletResult = &quot;&quot; + e;
+}</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="64cba8bc-0198-4346-9074-b04169c9af09">
+      <annotation></annotation>
+      <name>success</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules>
+        <expression id="e23afce2-6cab-47ee-b6b5-dcbf6273784b">
+          <annotation></annotation>
+          <name>response</name>
+          <fieldName>response</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <compare id="ed96a9b8-13d3-407a-a589-4868ee4c12ef">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>success</text>
+            <matchType>=</matchType>
+          </compare>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+    <opResponse id="8b76bd9a-a43f-46e2-b7e4-3ee3676fc861">
+      <annotation></annotation>
+      <name>failure</name>
+      <isDefault>true</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules>
+        <expression id="6939e42f-b444-451a-a8af-caa2c7067ea3">
+          <annotation></annotation>
+          <name>response</name>
+          <fieldName>response</fieldName>
+          <sourceType>RAWRESULT</sourceType>
+          <compare id="cb67ed26-7efd-4a83-8089-ab5fcc444e25">
+            <annotation></annotation>
+            <name>Config Item</name>
+            <text>failure</text>
+            <matchType>=</matchType>
+          </compare>
+          <filters/>
+        </expression>
+      </matchRules>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="8cdb9da5-6971-490d-9716-26c4a59045bc">
+    <annotation></annotation>
+    <name>returnResult</name>
+    <fieldName>returnResult</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="505e5d4c-2903-4355-9867-743010da5470">
+    <baseIcon>atom.png</baseIcon>
+    <basePath>/Others/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

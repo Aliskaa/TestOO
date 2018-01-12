@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="fd41b15d-5b42-43e1-bc89-8a39bcd0eec6">
+  <descriptionCdata><![CDATA[fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.9411b6df-2104-45c2-ad4c-b204cb447b28.transition.description=Plus de serveur \u00E0 s\u00E9lectionner
+fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.d98791a8-b5d3-41cc-9813-5d4e85d49793.transition.description=Server s\u00E9lectionn\u00E9 \= ${selectedServer} (Reste \= ${O_list.notYetSelected})
+fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.description=S\u00E9lectionne au hasard un serveur RAS parmi la liste des serveurs fournie en entr\u00E9e.\n\nLe nom du RAS s\u00E9lectionn\u00E9 est asign\u00E9 \u00E0 la variable GLOBALE "overrideJRAS" (donc pas d'Output explicite)
+fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.e879e20c-f0df-4f04-a534-cc2453d4e4b1.description=Iterateur sur une liste (chaine de valeurs s\u00E9par\u00E9es par le caract\u00E8re ';') de noms de serveurs.\nLa liste est initialis\u00E9e avec le contenu d'un SystemProperty dont le nom est pass\u00E9 en input.\n\nA chaque iteration, le nom du serveur s\u00E9lectionn\u00E9 est retourn\u00E9 dans la variable de flow O_memberSelected\nLe contenu de la liste des serveurs non encore s\u00E9lectionn\u00E9 est stock\u00E9 dans la variable de flow O_membersNotYetSelected.\n\n\nInputs \:\nI_hostsList\n\nOutputs \:\nO_hostrSelected\nO_hostsNotYetSelected\n\nResponses \:\nS_hostSelected \: si un nom de serveur a pu \u00EAtre propos\u00E9.\nS_hostNoMore \: s'il n'existe plus de nom de serveur \u00E0 proposer.\nE_other \: si erreur dans l'op\u00E9ration.
+]]></descriptionCdata>
+  <annotation>fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.description</annotation>
+  <name>RasSubflow.pickupServer</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="8f5bc300-f873-4ce3-941f-5893d1118cfc">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>false</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>true</isList>
+      <required>false</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_RAS.serversList</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>${OOSP.HPOO.rasServersList}</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <possibleResponses>
+    <opResponse id="a3a7244d-9ed7-4e99-a4f2-c1e29facd130">
+      <annotation></annotation>
+      <name>R_RAS.failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="4663a245-66a7-46cb-b8cf-29b9465a0420">
+      <annotation></annotation>
+      <name>R_RAS.selected</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="0394a263-8701-4776-a656-69813b277317">
+      <annotation></annotation>
+      <name>R_RAS.noMore</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions>
+    <expression id="189964e1-b1ef-48c5-b4e9-6b5f3decce7f">
+      <annotation></annotation>
+      <name>O_RAS.selected</name>
+      <fieldName>selectedServer</fieldName>
+      <sourceType>RAWRESULT</sourceType>
+      <filters/>
+    </expression>
+  </availableResultExpressions>
+  <resultExpression id="cc21dc63-464e-412f-b3a5-0335f0aabc11">
+    <annotation></annotation>
+    <name>FailureMessage</name>
+    <fieldName>FailureMessage</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="95b218ac-262f-4ad8-911a-d51562948448">
+    <baseIcon>flow.png</baseIcon>
+    <basePath>System</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <callouts/>
+  <checkPointFlow>true</checkPointFlow>
+  <compatibleRuntimeContext>false</compatibleRuntimeContext>
+  <historyCheckPointFlow>true</historyCheckPointFlow>
+  <steps>
+    <step id="e879e20c-f0df-4f04-a534-cc2453d4e4b1">
+      <annotation>fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.e879e20c-f0df-4f04-a534-cc2453d4e4b1.description</annotation>
+      <name>Flow.iteratorPickupFromList</name>
+      <bounds>
+        <x>180.0</x>
+        <y>60.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <scriptlet id="86bcbd41-273d-4f2f-b130-b18a361ccc11">
+        <annotation></annotation>
+        <name>Step Flow.iteratorPickupFromList in Flow RasSubflow.pickupServer (e879e20c-f0df-4f04-a534-cc2453d4e4b1)</name>
+        <script>// Puisque overrideJRAS est une variable globale, je ne vois pas d&apos;autre m&#233;thode pour l&apos;ecraser
+
+_RASselected = scriptletContext.get(&quot;O_list.selected&quot;);
+
+scriptletContext.putGlobal(&quot;overrideJRAS&quot;, _RASselected); </script>
+        <type>RHINO</type>
+      </scriptlet>
+      <bindings>
+        <staticBinding id="c8c9119a-419f-438d-99bd-ca779d1eaac1">
+          <annotation></annotation>
+          <fromContextKey>I_RAS.serversList</fromContextKey>
+          <assignFromContext>true</assignFromContext>
+          <assignToContext>true</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>true</isList>
+          <required>true</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>I_listToPickle</inputSymbol>
+          <listDelimiter>;</listDelimiter>
+          <value>__UNDEFINED__</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="d98791a8-b5d3-41cc-9813-5d4e85d49793">
+          <annotation>fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.d98791a8-b5d3-41cc-9813-5d4e85d49793.transition.description</annotation>
+          <name>R_list.itemSelected</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>R_list.itemSelected</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>57774ade-63bb-4e58-b39d-2bf4f6319e8c</refId>
+          </destination>
+          <source>
+            <refId>e879e20c-f0df-4f04-a534-cc2453d4e4b1</refId>
+          </source>
+          <positions>
+            <point>
+              <x>230.0</x>
+              <y>94.0</y>
+            </point>
+            <point>
+              <x>230.0</x>
+              <y>394.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>520.8340015242474</x>
+            <y>-1.7989837689264758</y>
+          </labelPosition>
+        </transition>
+        <transition id="a1f5941e-62ba-497a-a6eb-1178916e2954">
+          <annotation></annotation>
+          <name>R_list.failure</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>R_list.failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>19f907cc-07a6-4594-8ff3-3d638f5d7c01</refId>
+          </destination>
+          <source>
+            <refId>e879e20c-f0df-4f04-a534-cc2453d4e4b1</refId>
+          </source>
+          <positions>
+            <point>
+              <x>230.0</x>
+              <y>94.0</y>
+            </point>
+            <point>
+              <x>350.0</x>
+              <y>394.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>614.1449959147934</x>
+            <y>-3.757199468668757</y>
+          </labelPosition>
+        </transition>
+        <transition id="9411b6df-2104-45c2-ad4c-b204cb447b28">
+          <annotation>fd41b15d-5b42-43e1-bc89-8a39bcd0eec6.9411b6df-2104-45c2-ad4c-b204cb447b28.transition.description</annotation>
+          <name>R_list.noMoreItem</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>R_list.noMoreItem</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>502e0f2f-4ea1-4d08-be63-f0ac487ec0aa</refId>
+          </destination>
+          <source>
+            <refId>e879e20c-f0df-4f04-a534-cc2453d4e4b1</refId>
+          </source>
+          <positions>
+            <point>
+              <x>230.0</x>
+              <y>94.0</y>
+            </point>
+            <point>
+              <x>470.0</x>
+              <y>394.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>519.55024421003</x>
+            <y>-5.901722148211738</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>c8d91d82-12d3-498e-b0ca-42a9922eebcd</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="05870f29-6319-4fc5-95e5-696839ab706e">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>selectedServer</contextKey>
+          <expression id="63d293d1-86a4-4714-a87a-d71b142369a0">
+            <annotation></annotation>
+            <name>Result Field: Result</name>
+            <fieldName>Result</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+        <flowVariableAssignment id="9f0b8a33-d87a-4656-90ca-f923e38d0fca">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>OVERWRITE</action>
+          <assignmentTargetType>FLOW_OUTPUT_FIELD</assignmentTargetType>
+          <contextKey>selectedServer</contextKey>
+          <expression id="54e17239-afed-4448-8096-55a0d9d10b36">
+            <annotation></annotation>
+            <name>Result Field: Result</name>
+            <fieldName>Result</fieldName>
+            <sourceType>RAWRESULT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
+    <returnStep id="57774ade-63bb-4e58-b39d-2bf4f6319e8c">
+      <annotation></annotation>
+      <name>Resolved : R_RAS.selected</name>
+      <bounds>
+        <x>180.0</x>
+        <y>360.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="ee7676ca-38e2-4340-8216-3707c1305d2f">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>R_RAS.selected</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>57774ade-63bb-4e58-b39d-2bf4f6319e8c</refId>
+          </destination>
+          <source>
+            <refId>57774ade-63bb-4e58-b39d-2bf4f6319e8c</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>RESOLVED</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="502e0f2f-4ea1-4d08-be63-f0ac487ec0aa">
+      <annotation></annotation>
+      <name>No Action Taken : R_RAS.noMore</name>
+      <bounds>
+        <x>420.0</x>
+        <y>360.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="3f48846e-88e9-40d3-b232-ae3fef51befb">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>R_RAS.noMore</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>502e0f2f-4ea1-4d08-be63-f0ac487ec0aa</refId>
+          </destination>
+          <source>
+            <refId>502e0f2f-4ea1-4d08-be63-f0ac487ec0aa</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>NO_ACTION_TAKEN</returnStepType>
+      <assignments/>
+    </returnStep>
+    <returnStep id="19f907cc-07a6-4594-8ff3-3d638f5d7c01">
+      <annotation></annotation>
+      <name>Error : R_RAS.failure</name>
+      <bounds>
+        <x>300.0</x>
+        <y>360.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings/>
+      <transitions>
+        <transition id="8cb4e15e-8022-49ea-9f36-c28ae90eb6be">
+          <annotation></annotation>
+          <name>return</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>R_RAS.failure</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>19f907cc-07a6-4594-8ff3-3d638f5d7c01</refId>
+          </destination>
+          <source>
+            <refId>19f907cc-07a6-4594-8ff3-3d638f5d7c01</refId>
+          </source>
+          <positions/>
+        </transition>
+      </transitions>
+      <properties/>
+      <returnStepType>ERROR</returnStepType>
+      <assignments/>
+    </returnStep>
+  </steps>
+  <startSteps>e879e20c-f0df-4f04-a534-cc2453d4e4b1</startSteps>
+</flow>

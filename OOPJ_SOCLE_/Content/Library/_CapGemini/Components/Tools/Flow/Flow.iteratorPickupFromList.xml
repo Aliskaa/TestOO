@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="c8d91d82-12d3-498e-b0ca-42a9922eebcd">
+  <descriptionCdata><![CDATA[c8d91d82-12d3-498e-b0ca-42a9922eebcd.description=Iterateur sur une liste (chaine de valeurs s\u00E9par\u00E9es par le caract\u00E8re ';') de valeurs.\n\nA chaque iteration, une des valeurs est tir\u00E9e au hasard.\nS'il une valeur est trouv\u00E9e (\u00E9v\u00E9nement R_list.itemSelected) est elle retourn\u00E9e en tant que Result. Et la valeur est retir\u00E9e de la liste initiale.\nAinsi jusque plus de valeur \u00E0 tirer (\u00E9v\u00E9nement R_list.noMoreItem)\n\nL'algorithme est impl\u00E9ment\u00E9 dans le Scriplet.
+]]></descriptionCdata>
+  <annotation>c8d91d82-12d3-498e-b0ca-42a9922eebcd.description</annotation>
+  <name>Flow.iteratorPickupFromList</name>
+  <categories/>
+  <inputs>
+    <staticBinding id="b406f50f-7615-472d-bf3e-d27cfa6dfd72">
+      <annotation></annotation>
+      <assignFromContext>false</assignFromContext>
+      <assignToContext>true</assignToContext>
+      <inputType>STRING</inputType>
+      <isList>true</isList>
+      <required>true</required>
+      <isPersisted>true</isPersisted>
+      <inputSymbol>I_listToPickle</inputSymbol>
+      <listDelimiter>;</listDelimiter>
+      <value>__UNDEFINED__</value>
+      <record>false</record>
+    </staticBinding>
+  </inputs>
+  <scriptlet id="cc654874-f37d-4a6b-b657-1df621b52d50">
+    <annotation></annotation>
+    <name>Operation Flow.iteratorPickupFromList (6e55ed01-44b2-434f-a439-bd5478b4c416)</name>
+    <script>// **********************************************************************************
+// Coeur de l&apos;it&#233;rateur.
+// Historique :
+//	15/12/2014		D.MARION
+//
+// **********************************************************************************
+
+try {
+
+	// La liste des membres du cluster est m&#233;moris&#233;e dans C_SAcoreListToTest
+	_itemsToSelect = scriptletContext.get(&quot;O_list.notYetSelected&quot;);
+
+	// Si liste des membres vide, initialisation avec contenu de l&apos;input &quot;I_listToPickle&quot;
+	if (_itemsToSelect == null || _itemsToSelect == &quot;__NO_MORE__&quot;) {
+		_itemsToSelect=scriptletContext.get(&quot;I_listToPickle&quot;); 
+	}
+	
+	_itemsList = _itemsToSelect.split(&quot;;&quot;);
+	_itemsNbr = _itemsList.length
+	if ( _itemsNbr == 1 &amp;&amp; _itemsList[0] == &quot;&quot; ) { _itemsNbr = 0 }
+
+	if ( _itemsNbr == 0 ) {
+
+		// Plus d&apos;item
+		_itemSelected = &quot;&quot;
+		_itemsNotYetSelected=&quot;__NO_MORE__&quot;
+		
+		scriptletResponse = &quot;R_list.noMoreItem&quot;;
+
+	} else {
+		// Extraire &apos;au hasard&apos; un item de la liste
+		_next = java.util.Random().nextInt( _itemsNbr);
+
+		// Le mettre dans _itemSelected et le retirer de _itemsList
+		_itemSelected = _itemsList[_next];
+		// TODO : &#224; am&#233;liorer.  _itemsList.splice(_next,1) a un comportement bizarre
+		var _itemsNotYetSelected = new Array()
+		for (_item in _itemsList) {
+			if (_item != _next ) { 
+				_itemsNotYetSelected.push(_itemsList[_item])
+			}
+		}
+		_itemsNotYetSelected = _itemsNotYetSelected.join(&quot;;&quot;)
+
+		scriptletResponse = &quot;R_list.itemSelected&quot;;
+	} 
+	//TODO: a voir comment ne pas passer par des putGlobal
+	scriptletContext.putGlobal(&quot;O_list.notYetSelected&quot;, _itemsNotYetSelected); 
+	scriptletContext.put(&quot;O_list.selected&quot;, _itemSelected);
+
+	scriptletResult = _itemSelected; 
+
+
+
+
+} catch (e) {
+	// TODO : Voir comment remonter le d&#233;tail de l&apos;erreur
+	log ( e )
+	scriptletResponse = &quot;R_list.failure&quot;;
+}
+
+
+
+</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="a53e00f6-c41f-456a-8a62-11d6e65e0431">
+      <annotation></annotation>
+      <name>R_list.itemSelected</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="17d4b24f-f0ae-4ed5-ac15-d4c8d4eb5bfa">
+      <annotation></annotation>
+      <name>R_list.noMoreItem</name>
+      <isDefault>false</isDefault>
+      <onFailure>false</onFailure>
+      <type>NO_ACTION_TAKEN</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="bd23dcc9-8286-4df5-9ac3-933999989526">
+      <annotation></annotation>
+      <name>R_list.failure</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="ad42bb66-1900-44ab-86ec-5f8366e0d58a">
+    <annotation></annotation>
+    <name>Field 1</name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="fab41046-caaa-46fd-ae6a-30bbf91b22ee">
+    <baseIcon>loop_icon.png</baseIcon>
+    <basePath>/Tools/</basePath>
+    <readOnly>false</readOnly>
+    <layers>
+      <iconSpec id="f2b68f7b-2725-4bc9-8cc1-d1d75469c3d2">
+        <baseIcon>send.png</baseIcon>
+        <basePath>/Annotations/</basePath>
+        <readOnly>false</readOnly>
+        <layers/>
+      </iconSpec>
+    </layers>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>

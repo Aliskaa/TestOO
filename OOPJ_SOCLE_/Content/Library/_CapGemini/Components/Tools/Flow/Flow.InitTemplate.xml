@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operation id="e217eb09-15cb-47ef-b20c-3c4fe9c4d292">
+  <descriptionCdata><![CDATA[]]></descriptionCdata>
+  <annotation></annotation>
+  <name>Flow.InitTemplate</name>
+  <categories/>
+  <inputs/>
+  <scriptlet id="961a7ca8-92bc-4e97-b810-e1296e0a1994">
+    <annotation></annotation>
+    <name>Operation Flow.InitTemplate (55388f33-0a8e-469c-abad-3ee9ae6105b8)</name>
+    <script>_flowLog = &quot;Initialisation flow.\n&quot;;
+scriptletContext.putGlobal(&quot;F_log&quot;, _flowLog); 
+</script>
+    <type>RHINO</type>
+  </scriptlet>
+  <possibleResponses>
+    <opResponse id="15462c17-32ce-43ce-9209-e4e6ffa00697">
+      <annotation></annotation>
+      <name>S_initFlow</name>
+      <isDefault>true</isDefault>
+      <onFailure>false</onFailure>
+      <type>RESOLVED</type>
+      <matchRules/>
+    </opResponse>
+    <opResponse id="edde80df-8f12-42bb-a2b3-f05d64fb2f99">
+      <annotation></annotation>
+      <name>E_initFlow</name>
+      <isDefault>false</isDefault>
+      <onFailure>true</onFailure>
+      <type>ERROR</type>
+      <matchRules/>
+    </opResponse>
+  </possibleResponses>
+  <availableResultExpressions/>
+  <resultExpression id="d8a6dbd7-7c64-4214-841b-d924035cbd44">
+    <annotation></annotation>
+    <name>Field 1</name>
+    <fieldName>Field_1</fieldName>
+    <sourceType>RAWRESULT</sourceType>
+    <filters/>
+  </resultExpression>
+  <iconSpec id="29875580-49df-4aa8-8f7c-dcb1b7f0f724">
+    <baseIcon>wrench2.png</baseIcon>
+    <basePath>/Utilities/</basePath>
+    <readOnly>false</readOnly>
+    <layers/>
+  </iconSpec>
+  <opRef>
+    <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
+  </opRef>
+  <fieldValues/>
+  <groupAliasRef>
+    <refId>5233030c-af46-432b-a682-b326ca6bf2ae</refId>
+    <refName>RAS_Operator_Path</refName>
+  </groupAliasRef>
+</operation>
