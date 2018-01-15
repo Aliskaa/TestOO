@@ -248,23 +248,10 @@
       <name>Append new Context info</name>
       <bounds>
         <x>188.0</x>
-        <y>315.0</y>
+        <y>317.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
-      <iconSpec id="94da95bd-eff0-421c-adbb-7605876a9bcf">
-        <baseIcon>jar.png</baseIcon>
-        <basePath>Others/</basePath>
-        <readOnly>false</readOnly>
-        <layers>
-          <iconSpec id="f186e37e-614f-458f-90d8-0cab370c1fc5">
-            <baseIcon>add.png</baseIcon>
-            <basePath>Annotations/</basePath>
-            <readOnly>false</readOnly>
-            <layers/>
-          </iconSpec>
-        </layers>
-      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>
@@ -278,21 +265,7 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="c7ca5f7b-db83-4b4e-bbdf-fef2bccac5d4">
-          <annotation></annotation>
-          <fromContextKey>vf.reportVariableName</fromContextKey>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>keyName</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>vf.reportInfos</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="b29f9c81-87a3-4138-a2a9-39e0605babe2">
+        <staticBinding id="a502a0ac-d961-4ef1-ba66-2040cb212910">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -300,22 +273,9 @@
           <isList>false</isList>
           <required>true</required>
           <isPersisted>true</isPersisted>
-          <inputSymbol>resultText</inputSymbol>
+          <inputSymbol>vf.reportInfos</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value>${vf.tagContext}${vf.fieldSeparator}${in.name}${vf.fieldSeparator}${in.value}</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="4b0ef4da-304c-4df5-bab2-8727a484d2f7">
-          <annotation></annotation>
-          <fromContextKey>vf.rowSeparator</fromContextKey>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>delimiter</inputSymbol>
-          <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
       </bindings>
@@ -352,9 +312,24 @@
       </transitions>
       <properties/>
       <opRef>
-        <refId>f6e6cb22-1802-4fca-9f9b-4c699c486aa6</refId>
+        <refId>83420760-f912-4f38-8aa8-ce65b699d9fc</refId>
       </opRef>
-      <assignments/>
+      <assignments>
+        <flowVariableAssignment id="9c83ec6d-b4d1-4a56-a499-defc23ffd36d">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>APPEND</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>vf.reportInfos</contextKey>
+          <expression id="851a55d3-53d3-48eb-9825-f3507cea3c80">
+            <annotation></annotation>
+            <name>Input: vf.reportInfos</name>
+            <fieldName>vf.reportInfos</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
       <throttleSize>0</throttleSize>
     </step>
     <step id="f51ed356-0289-4317-a486-211dc80006f2">
@@ -362,7 +337,7 @@
       <name>Set Global Flow Variable</name>
       <bounds>
         <x>469.0</x>
-        <y>318.0</y>
+        <y>317.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -463,8 +438,8 @@
       <annotation></annotation>
       <name>Resolved : success</name>
       <bounds>
-        <x>595.0</x>
-        <y>316.0</y>
+        <x>599.0</x>
+        <y>317.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -508,7 +483,7 @@
       <name>Erase empty variable</name>
       <bounds>
         <x>322.0</x>
-        <y>314.0</y>
+        <y>317.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>

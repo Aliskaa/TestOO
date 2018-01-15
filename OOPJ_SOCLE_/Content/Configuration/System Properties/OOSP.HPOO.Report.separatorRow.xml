@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemProperty id="13c5e642-8961-43d0-97e3-a5038884bba7">
+  <descriptionCdata><![CDATA[13c5e642-8961-43d0-97e3-a5038884bba7.description=Utilis\u00E9 par les op\u00E9rations de g\u00E9n\u00E9ration de rapport d'ex\u00E9cution au format brut (sans formattage).\nCaract\u00E8re (par d\u00E9faut) de s\u00E9parateur de ligne dans le rapport.
+]]></descriptionCdata>
+  <annotation>13c5e642-8961-43d0-97e3-a5038884bba7.description</annotation>
+  <name>OOSP.HPOO.Report.separatorRow</name>
+  <value>{OBFUSCATED}+ELrsZ5fFioD8UQE8XKesg==</value>
+</systemProperty>

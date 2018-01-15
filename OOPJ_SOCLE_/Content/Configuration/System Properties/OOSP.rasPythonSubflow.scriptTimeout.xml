@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemProperty id="701d24ab-663d-403e-9fcb-3bf6a544ea4f">
+  <descriptionCdata><![CDATA[701d24ab-663d-403e-9fcb-3bf6a544ea4f.description=Timeout par d\u00E9faut sur un script RAS\nValeur en millisecondes
+]]></descriptionCdata>
+  <annotation>701d24ab-663d-403e-9fcb-3bf6a544ea4f.description</annotation>
+  <name>OOSP.rasPythonSubflow.scriptTimeout</name>
+  <value>{OBFUSCATED}UMAPIXQj36dDGCJtF/ha+A==</value>
+</systemProperty>

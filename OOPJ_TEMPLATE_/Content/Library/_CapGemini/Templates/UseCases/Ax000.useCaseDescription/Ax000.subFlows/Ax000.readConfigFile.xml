@@ -107,7 +107,7 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="cc4edc35-9fb8-4575-86c3-6e99351e4cc9">
+        <staticBinding id="a6beb696-1a69-4fe5-b013-cdbeef3474ba">
           <annotation></annotation>
           <fromContextKey>IN.casusIdent</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -121,7 +121,7 @@
           <value>__UNDEFINED__</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="aba1642c-dcc7-4d45-9de3-df3e3fc87761">
+        <staticBinding id="cd093337-b0e4-4f84-92bc-2a1083efe524">
           <annotation></annotation>
           <fromContextKey>IN.configName</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -135,7 +135,7 @@
           <value>DEFAULT</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="c89c661e-9248-4e20-a6c6-41271693de62">
+        <staticBinding id="febd94b9-e60d-463b-a2c6-ebf85b2339e8">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -244,7 +244,7 @@
       </transitions>
       <properties/>
       <opRef>
-        <refId>393d6c19-1df0-4e1b-86d1-d1c9036a7f45</refId>
+        <refId>0422e31b-70d1-458a-9b71-cfa2042f179f</refId>
       </opRef>
       <assignments>
         <flowVariableAssignment id="e207ef72-bd6d-4786-b804-1878e832c422">
@@ -332,7 +332,7 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="2fb2174d-8ff5-4d55-a487-bbc51180690a">
+        <staticBinding id="f77e78fd-2b89-4649-9393-11122bb07f1e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -345,7 +345,7 @@
           <value>Read Config File</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="f4f981b8-f3a7-404e-a6b4-784ec3fc9dc3">
+        <staticBinding id="27cef269-8dda-4bfc-aa47-8bd6589c43c6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -358,7 +358,7 @@
           <value></value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="20af7003-9e11-4ea6-9cff-9c64397fe7a5">
+        <staticBinding id="bcd50896-f975-470a-bfb0-2dd5d3ebbe3d">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -371,7 +371,7 @@
           <value>${IN.casusIdent}_${IN.configName}</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="5150b1b3-a3ba-4628-9225-23bd02ce0531">
+        <staticBinding id="53dc5939-e0dc-4fa7-9d8a-e696acfb0a79">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -384,7 +384,7 @@
           <value>FAILURE</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="9194a0fc-934a-4071-87aa-2390d085f21d">
+        <staticBinding id="1b76c778-3091-4fa1-a22f-256f0d80095e">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -395,6 +395,30 @@
           <inputSymbol>in.stepMsg</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value>Error Reading config file</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="6bb0471f-2c0f-4cb8-b914-6a0d86beee15">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.fieldSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="14907100-7090-4558-9192-a53c95630609">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.rowSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
       </bindings>
@@ -431,7 +455,7 @@
       </transitions>
       <properties/>
       <opRef>
-        <refId>dd28d0f1-1ad7-4bef-b7f7-2cc73a361c71</refId>
+        <refId>4711c277-1b6c-4299-9511-ea8ee778f204</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>
@@ -546,7 +570,7 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="7a461ba4-85e8-4952-8000-aa98d64be3f7">
+        <staticBinding id="dc7588cd-5a24-4c3e-a857-e6078d15aefc">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -559,7 +583,7 @@
           <value>Objectif</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="3f038b8d-83ed-41a0-83b3-e9f05a3f1c0c">
+        <staticBinding id="62618988-ac50-4609-8a96-02e72e77cad3">
           <annotation></annotation>
           <fromContextKey>vf.casusDesc</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -571,6 +595,30 @@
           <inputSymbol>in.value</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value>__UNDEFINED__</value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="b367b2d9-7fcc-4392-8791-60e54d8c6b50">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.fieldSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="0562949c-c3ff-4f62-b6fb-5c6fca4360a6">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.rowSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
       </bindings>
@@ -607,7 +655,7 @@
       </transitions>
       <properties/>
       <opRef>
-        <refId>a8e2d4da-94a7-4894-9d8e-dbb694950660</refId>
+        <refId>878cdc26-12a3-4943-8027-65db9b3d9008</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>

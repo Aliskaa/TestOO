@@ -9,10 +9,10 @@
 5dd8ebd5-6d95-492b-86e8-e16521a68605.91d2cf06-99f7-4461-b96e-1ece0661da97.description=<pre> \nCheck to see if the value stored in a specified flow variable, denoted by key, is null.\n\nInputs\:\n    keyName - The key to check, i.e. the name of the flow variable. \n    trimSpaces - If set on "true" then all the whitespaces will be removed from the value stored. \nValid values\: true, false\nDefault value\: false\n\nReturns\: \n    The value in the specified key, i.e. flow variable with all whitespaces removed.\n\nResponses\:\n    isNull - If the key is a null pointer, i.e. the flow variable doesn't have an assigned value.\n    notNull - If some value is stored in the key, i.e the flow variable has a value assigned. \n\nNotes\: \n    1. If the "trimSpaces" input is set on "true" and the value from "keyName" contains only whitespaces then the response will be "isNull". \n    2. If the "trimSpaces" input is set on "false" and the value from "keyName" contains only whitespaces then the response will be "notNull". \n    3. If any other value than "true" or "false" is passed on "trimSpaces" input then the default value (false) will be used.\n</pre>
 5dd8ebd5-6d95-492b-86e8-e16521a68605.962d5c59-8872-410a-ab0e-827b31cc8b4e.description=<pre>Clears the value of a global flow variable, a flow variable. Global flow variables are the flow variables that are initialized before the topmost flow starts executing. By default the global context only contains system properties. Basically, the global context contains things such that all parent flows see them.\n\nInput Parameters\:\nkeyName - the name of the global flow variable to clear\n\nResponses\:\nsuccess - cleared the global flow variable\n\nScriptlet Example\:\n[$scriptletContext putGlobal\: $keyName, null];</pre>
 5dd8ebd5-6d95-492b-86e8-e16521a68605.a4bf117b-2c03-4315-a1bf-27f0792891eb.description=<pre>This operation iterates through a list of values. It is not recommended to modify the value of the "list" and "separator" inputs during the iteration process.\n\nInputs\:\n    list - The list to iterate through.\n    separator - A delimiter separating the list elements.\nDefault value\: \u2018,\u2019 (comma) \n\nResults\:\n    resultString - The current list element (if the response is "has more").\n\nResponses\:\n    has more - Another value was found in the list and it has been returned.\n    no more - The iterator has gone through the entire list. This response is returned once per list iteration.  A subsequent call to the List iterator operation restarts the list iteration process.\n    failure - The operation completed unsuccessfully.\n\nNote\:\n   The position of the iterator in the list is tracked by each step's unique identifier. Therefore, you can simultaneously iterate through the same list from multiple steps.\n</pre>
+5dd8ebd5-6d95-492b-86e8-e16521a68605.b28c3ad5-393f-4830-b062-f486bf1f8418.callout=Suppression ajout Objectif dans Header\nR\u00E9cup\u00E9r\u00E9 dans fichier de conf (plus tard)
 5dd8ebd5-6d95-492b-86e8-e16521a68605.bdb6371c-5585-4954-b33c-fbb6a7f9062b.description=<pre>\nThis operation adds a flow variable to the global context. The variable is available in the current flow and its child flows.\n\nInputs\:\n    keyName - The name of the flow variable to add.\n    myValue - The value to assign to the flow variable.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of "myValue" input field.\n\nResponses\:\n    success - The operation completed as stated in the description.\n\nNote\:\n   If a flow variable with the same name already exists, its value will be overwritten.\n</pre>
 5dd8ebd5-6d95-492b-86e8-e16521a68605.cdf2d530-3f72-4c3b-8096-cff903b0c4de.description=<pre>\nCheck the current date and time, and returns a java DateAndTime formatted string of it. If locale is specified, it will return the date and time string based on the locale.Otherwise, default locale will be used.\n\nInputs\:\n    localeLang - The locale language for date and time string. \nExamples\:  en, ja, unix.\n    localeCountry - The locale country for date and time string. For example, US or JP. If localeLang is not specified, this input will be ingored.\n\nResult\:\n    Current date and time.\n\nResponses\:\n    success - Date/time retrieved successfully.   \n    failure - Date/time could not be retrieved.\n\nNotes.\n    1. If localeLang is 'unix' the localeCountry input is ignored and the result will be the current UNIX timestamp.\n</pre>
 5dd8ebd5-6d95-492b-86e8-e16521a68605.description=Description\:\n-------------\nCe flow permet d'initialiser le rapport d'ex\u00E9cution.\nIl cr\u00E9\u00E9 la variable global "VF.ReportInfos" afin que celle-ci soit visible dans l'ensemble du m\u00E9canisme (Flow principal et sous-flows).\nIl cr\u00E9\u00E9 l'ent\u00EAte du rapport en s'appuyant sur les inputs "VF.casusIdent" et "CF.casusDesc" \: \nenteteReport\u00A4Emetteur\u00A4${VF.casusIdent}.main\nenteteReport\u00A4Objectif\u00A4${CF.casusDesc}\nenteteReport\u00A4ID Execution\u00A4${run_id}\n\nIl cr\u00E9\u00E9 \u00E9galement la variable globale\= "VF.reportAttachments" qui va contenir les pi\u00E8ces jointes \u00E0 envoyer par email ... ou autre.\n\nSi les caract\u00E8res de s\u00E9paration ne sont pas indiqu\u00E9s, l'op\u00E9ration utilisera les valeurs par d\u00E9faut.\n\nInputs\:\n--------------------------------\nIN.casusIdent (obligatoire) \:\t\tR\u00E9f\u00E9rence du cas d'usage\nIN.casusDesc (obligatoire) \:\t\tDescription du cas d'usage\nIN.labelsToDisplay (faultatif) \: \tListe de labels \u00E0 faire appara\u00EEtre dans la section "Contexte" du rapport (s\u00E9parateur '\u00A4')\nIN.valuesToDisplay (facultatif) \: \tListe de valeurs \u00E0 faire appara\u00EEtre dans la section "Contexte" du rapport (s\u00E9parateur '\u00A4')\nin.separatorField\:\t\tCaract\u00E8re de s\u00E9paration des champs du rapport\nin.separatorRow\:\t\tCaract\u00E8re de s\u00E9paration des lignes du rapport\n\n/\!\\ Attention \: le nombre d'\u00E9l\u00E9ments de la liste "VF.labelsToDisplay" doit correspondre au nombre d'\u00E9l\u00E9ments de la liste "VF.valuesToDisplay", le traitement associant une valeur \u00E0 chacun des labels.\n\nInputs Examples\:\n--------------------\nIN.casusIdent\:\t\t"AE123"\nIN.casusDesc \:\t\t"Inventaire serveur"\nIN.labelsToDisplay \: \t"Nom du serveur\u00A4Timeout"\nIN.valuesToDisplay \: \t"srvWin123\u00A43600"\nin.separatorField\:\t""\nin.separatorRow\:\t""\n\nOutputs\:\n----------\nN/A\n\nRevision\:\n----------\n16-10-2017 \: Capgemini - FBI\nversion initiale\n\nConfiguration\:\n----------------\nN/A
-5dd8ebd5-6d95-492b-86e8-e16521a68605.f92b32d9-8d82-469b-9b05-40879b637d3a.description=<pre> \nCheck to see if the value stored in a specified flow variable, denoted by key, is null.\n\nInputs\:\n    keyName - The key to check, i.e. the name of the flow variable. \n    trimSpaces - If set on "true" then all the whitespaces will be removed from the value stored. \nValid values\: true, false\nDefault value\: false\n\nReturns\: \n    The value in the specified key, i.e. flow variable with all whitespaces removed.\n\nResponses\:\n    isNull - If the key is a null pointer, i.e. the flow variable doesn't have an assigned value.\n    notNull - If some value is stored in the key, i.e the flow variable has a value assigned. \n\nNotes\: \n    1. If the "trimSpaces" input is set on "true" and the value from "keyName" contains only whitespaces then the response will be "isNull". \n    2. If the "trimSpaces" input is set on "false" and the value from "keyName" contains only whitespaces then the response will be "notNull". \n    3. If any other value than "true" or "false" is passed on "trimSpaces" input then the default value (false) will be used.\n</pre>
 ]]></descriptionCdata>
   <annotation>5dd8ebd5-6d95-492b-86e8-e16521a68605.description</annotation>
   <name>Report.init</name>
@@ -154,6 +154,16 @@
         <y>20.0</y>
         <width>350.0</width>
         <height>117.0</height>
+      </bounds>
+      <layer>-1</layer>
+    </callout>
+    <callout id="b28c3ad5-393f-4830-b062-f486bf1f8418">
+      <text>5dd8ebd5-6d95-492b-86e8-e16521a68605.b28c3ad5-393f-4830-b062-f486bf1f8418.callout</text>
+      <bounds>
+        <x>846.0</x>
+        <y>363.0</y>
+        <width>200.0</width>
+        <height>100.0</height>
       </bounds>
       <layer>-1</layer>
     </callout>
@@ -374,128 +384,6 @@
       <properties/>
       <opRef>
         <refId>4db41624-575a-4712-bef0-76e51bd2fd7e</refId>
-      </opRef>
-      <assignments/>
-      <throttleSize>0</throttleSize>
-    </step>
-    <step id="f92b32d9-8d82-469b-9b05-40879b637d3a">
-      <annotation>5dd8ebd5-6d95-492b-86e8-e16521a68605.f92b32d9-8d82-469b-9b05-40879b637d3a.description</annotation>
-      <name>Check if CF.casusDesc is Null</name>
-      <bounds>
-        <x>893.0</x>
-        <y>508.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="dce9cf0d-9693-433d-aa36-5f5b6fb7bab9">
-        <baseIcon>compare.png</baseIcon>
-        <basePath>Utilities/</basePath>
-        <readOnly>false</readOnly>
-        <layers/>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <staticBinding id="8f9dfafe-4223-41fc-b9a4-1476b6256210">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>keyName</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>CF.casusDesc</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="c7214eef-775c-40f2-8673-d5b138935b9e">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>trimSpaces</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>True</value>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="bc06f28f-4323-4242-bd59-b5565a4064ee">
-          <annotation></annotation>
-          <name>notNull</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>notNull</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>08ac8b28-e500-4f86-b6fb-a4bb3b070e4b</refId>
-          </destination>
-          <source>
-            <refId>f92b32d9-8d82-469b-9b05-40879b637d3a</refId>
-          </source>
-          <positions>
-            <point>
-              <x>673.0</x>
-              <y>539.0</y>
-            </point>
-            <point>
-              <x>671.0</x>
-              <y>375.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-        <transition id="9f55db9a-5b22-4154-8e03-8421026eb72a">
-          <annotation></annotation>
-          <name>isNull</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>isNull</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>91d2cf06-99f7-4461-b96e-1ece0661da97</refId>
-          </destination>
-          <source>
-            <refId>f92b32d9-8d82-469b-9b05-40879b637d3a</refId>
-          </source>
-          <positions>
-            <point>
-              <x>707.0</x>
-              <y>517.0</y>
-            </point>
-            <point>
-              <x>856.0</x>
-              <y>372.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>b9997f7f-d19c-4dc6-acc4-fa91a8644a38</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>
@@ -1063,133 +951,6 @@
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
-    <step id="08ac8b28-e500-4f86-b6fb-a4bb3b070e4b">
-      <annotation></annotation>
-      <name>Add Header &quot;Objectif&quot;</name>
-      <bounds>
-        <x>893.0</x>
-        <y>371.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="b6a18885-f3d6-442a-aeb0-b547889d7883">
-        <baseIcon>text.png</baseIcon>
-        <basePath>/Operating System/</basePath>
-        <readOnly>false</readOnly>
-        <layers>
-          <iconSpec id="c557dbaa-727e-4891-b4d5-0d70ad1f86db">
-            <baseIcon>hat_red.png</baseIcon>
-            <basePath>/Annotations/</basePath>
-            <readOnly>false</readOnly>
-            <layers/>
-          </iconSpec>
-        </layers>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <staticBinding id="bd697de9-15d1-4dd1-a8a3-76e2bc81113c">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>in.name</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>Objectif</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="8a49a26d-2007-4f9d-a148-23553670ca84">
-          <annotation></annotation>
-          <fromContextKey>CF.casusDesc</fromContextKey>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>in.value</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>__UNDEFINED__</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="3384bf92-869d-41bc-86ee-b754c7d79d96">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>in.fieldSeparator</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value></value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="99f69846-83ca-4694-bea5-58ffa42de8f7">
-          <annotation></annotation>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>in.rowSeparator</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value></value>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="09d5a252-9b9a-4fda-b7f1-f3554300cc9f">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>91d2cf06-99f7-4461-b96e-1ece0661da97</refId>
-          </destination>
-          <source>
-            <refId>08ac8b28-e500-4f86-b6fb-a4bb3b070e4b</refId>
-          </source>
-          <positions>
-            <point>
-              <x>701.0</x>
-              <y>376.0</y>
-            </point>
-            <point>
-              <x>856.0</x>
-              <y>372.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>878cdc26-12a3-4943-8027-65db9b3d9008</refId>
-      </opRef>
-      <assignments/>
-      <throttleSize>0</throttleSize>
-    </step>
     <step id="688baea5-83ca-4e5c-9546-107748980e9f">
       <annotation>5dd8ebd5-6d95-492b-86e8-e16521a68605.688baea5-83ca-4e5c-9546-107748980e9f.description</annotation>
       <name>Set Global Flow Variable VF.reportAttachments</name>
@@ -1446,7 +1207,7 @@
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="73fba58d-02f9-4816-9e6f-27ec2b953e56">
+        <transition id="9f596b96-955c-4f2d-aa4a-0ba3e76ffc7a">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -1455,19 +1216,19 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>f92b32d9-8d82-469b-9b05-40879b637d3a</refId>
+            <refId>91d2cf06-99f7-4461-b96e-1ece0661da97</refId>
           </destination>
           <source>
             <refId>9ebd9f70-a032-4cce-a41b-ba902b687f70</refId>
           </source>
           <positions>
             <point>
-              <x>524.0</x>
-              <y>377.0</y>
+              <x>783.0</x>
+              <y>405.0</y>
             </point>
             <point>
-              <x>375.0</x>
-              <y>707.0</y>
+              <x>1098.0</x>
+              <y>405.0</y>
             </point>
           </positions>
           <labelPosition>

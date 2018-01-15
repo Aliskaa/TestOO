@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<systemProperty id="bd4ea84e-44dc-4e32-af5a-25628597ddcc">
+  <descriptionCdata><![CDATA[bd4ea84e-44dc-4e32-af5a-25628597ddcc.description=Utilis\u00E9 par les op\u00E9rations de g\u00E9n\u00E9ration de rapport d'ex\u00E9cution au format brut (sans formattage).\nCaract\u00E8re (par d\u00E9faut) de s\u00E9parateur de champ dans le rapport.
+]]></descriptionCdata>
+  <annotation>bd4ea84e-44dc-4e32-af5a-25628597ddcc.description</annotation>
+  <name>OOSP.HPOO.Report.separatorField</name>
+  <value>{OBFUSCATED}3m2BZ+yoGSwkbrXJWWRTvQ==</value>
+</systemProperty>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow id="878cdc26-12a3-4943-8027-65db9b3d9008">
-  <descriptionCdata><![CDATA[878cdc26-12a3-4943-8027-65db9b3d9008.6fc1f0ec-c369-47ad-96dd-e3300b70a111.callout=Description \:\nCe flow permet d'ajouter une nouvelle entr\u00E9e de type "enteteReport" au rapport d'ex\u00E9cution.\nIl ajoute une ligne format\u00E9e de la mani\u00E8re suivante \: \nenteteReport\u00A4<in.name>\u00A4<in.value>\nLa nouvelle entr\u00E9e est ajout\u00E9e \u00E0 la variable globale "VF.reportInfos" (initialis\u00E9e par le flow "Report.init").\nExemples \: \nenteteReport\u00A4Emetteur\u00A4AExxx\nenteteReport\u00A4Objectif\u00A4Cas d'usage permettant de ...\nenteteReport\u00A4ExecutionID\u00A4123456789
+  <descriptionCdata><![CDATA[878cdc26-12a3-4943-8027-65db9b3d9008.6fc1f0ec-c369-47ad-96dd-e3300b70a111.callout=Description \:\nCe flow permet d'ajouter une nouvelle entr\u00E9e de type "flowDescription" au rapport d'ex\u00E9cution.\nIl ajoute une ligne format\u00E9e de la mani\u00E8re suivante \: \nflowDescription\u00A4<in.name>\u00A4<in.value>\nLa nouvelle entr\u00E9e est ajout\u00E9e \u00E0 la variable globale "VF.reportInfos" (initialis\u00E9e par le flow "Report.init").\nExemples \: \nflowDescription\u00A4Emetteur\u00A4AExxx\nflowDescription\u00A4Objectif\u00A4Cas d'usage permettant de ...\nflowDescription\u00A4ExecutionID\u00A4123456789
 878cdc26-12a3-4943-8027-65db9b3d9008.9e15c366-c743-4999-b057-6826b68e5eb5.description=<pre>Resolves any flow variables in a String. This is useful if you have an input to a flow that references undefined flow variables, and define them later. Pass in the flow variable key name of the string that contains unresolved flow variables.\n\nInputs\:\nkeyName - The name of the flow variable that should have its value reresolved.\neraseUnresolved - A boolean value. If true, any unresolved flow variable references will be replaced by nothing (IE ${variable} disappears).\n\nResponses\:\nsuccess - One or more flow variables were replaced, or could not be resolved and were erased from the string.\nfailure - No flow variables were referenced in the string.\n\nReturns\:\nThe resulting string having had flow variable references replaced with the resolved values.\n\nExamples of usage \:\n\nI .\n\nSet flow variable \: fw_var \= ${systems}xyz${system}        \nSet flow variable \: system \= text\n\nFlow variable resolver \:\n\nkeyName \= fw_var                              \neraseUnresolved \= false\n\nThe response is success and the result is ${systems}xyztext. The "systems" flow varible does not exist but is not deleted.\n\nI' ( I reversed )\n\nSet flow variable \: system \= text\nSet flow variable \: fw_var \= ${systems}xyz${system}        \n\nFlow variable resolver \:\n\nkeyName \= fw_var                              \neraseUnresolved \= false\n\nWhen executing the second Set Flow Variable step, OO sees that it can resolve ${system} and does this. By the time the execution reaches Flow Variable Resolver, fw_var is already ${systems}xyztext. And the operation cannot resolve any more variables so it fails.\n\nII. \n\nSame as I, but eraseUnresolved is true.\n\nThe response is success and the result is xyztext. The systems flow variable does not exist and is deleted   \n\nIII. same as I,  but "system" flow variable does not exist.\n\nThe response is failure and the result is ${systems}xyz${system}. Both flow variables do not exist and are not deleted, failure occurs because nothing changed from the initial value.\n\nIV. \n\nSet flow variables\:\n\n- keyNames \= system,vs\n- myValues \= vs,1234\n\nFlow variable resolver\:\n- keyName \= ${system}\n- eraseUnresolved \= false\n\nAlthough we suply ${system} as the value for keyName, when debugging we see that the Step Input value is actually "vs" ( similar to I', OO already resolves the variable, before it reaches the functionality of the operation ). The variable "vs" exists in the context with the value 1234, which is also returned in the result. However, "vs" does not contain any flow variable names, therefore is not changed in the operation itself. Subsequenlty, the operation fails. </pre>
 878cdc26-12a3-4943-8027-65db9b3d9008.a5169287-98f1-42b0-aeda-67a654ca2eff.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
-878cdc26-12a3-4943-8027-65db9b3d9008.b65a1779-cee4-44e3-9d03-d83a8ab56183.description=<pre>Useful Op to keep a running results.\nTakes a string input (resultText) and appends this to a global context key of "runningResults". As a result, the context key whose name is in the keyName input will be appended with the string from the input resultText.\n\nInput Parameters\:\nkeyName - name of context key to append to\nresultText - string input to append\ndelimiter - (leave blank for none) the delimiter to put between what is already in keyName before appending resultText\n\nResponses\:\nsuccess - assigned the context variable\n\nReturns\:\nThe value of the context variable it appended to.\n\nContext\:\nrunningResults\n\nScriptlet Example\:\ncurrentResults \= scriptletContext.get("runningResults");\n\nif (currentResults \=\= null) {\n   currentResults \= resultText;\n} else {\n   currentResults +\= resultText;\n}\n\n\nscriptletContext.putGlobal("runningResults", currentResults);</pre>
+878cdc26-12a3-4943-8027-65db9b3d9008.b3dd2844-e688-4f8e-b4d9-899eb42c22de.description=<pre>\nThis operation does not do anything. It can be used to filter flow variables by defining them as inputs and filtering them in the Results tab.\n\nInputs\:\n    field1 \u2013 An optional input that can be used for filtering flow variables.\n    field2 \u2013 An optional input that can be used for filtering flow variables.\n    field3 \u2013 An optional input that can be used for filtering flow variables.\n    field4 \u2013 An optional input that can be used for filtering flow variables.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of  "field1" as it was specified at input or when filtered. \n\nResponses\:\n    success - The operation completed as stated in the description.\n</pre>
 878cdc26-12a3-4943-8027-65db9b3d9008.bd165184-a7d5-4fd8-9094-80ad7f227753.description=<pre>\nThis operation adds a flow variable to the global context. The variable is available in the current flow and its child flows.\n\nInputs\:\n    keyName - The name of the flow variable to add.\n    myValue - The value to assign to the flow variable.\n\nResults\:\n    returnResult - This is the primary output. It contains the value of "myValue" input field.\n\nResponses\:\n    success - The operation completed as stated in the description.\n\nNote\:\n   If a flow variable with the same name already exists, its value will be overwritten.\n</pre>
 878cdc26-12a3-4943-8027-65db9b3d9008.be7f6390-ebc3-445f-9ddf-3fb08705b1c3.callout=Codification \: \nin.xxxxx \: param\u00E8tre d'entr\u00E9e (modifiable)\nvf.xxxxx \: variable de flow (modifiable)\ncf.xxxxx \: variable issue de la configuration du flow (modifiable)\n<YY>.xxxxx \: variable li\u00E9e au template (non modifiable)\nYY \= IN, VF, CF
 878cdc26-12a3-4943-8027-65db9b3d9008.description=Description\:\n--------------\nCe flow permet d'ajouter une nouvelle entr\u00E9e de type "enteteReport" au rapport d'ex\u00E9cution.\nIl ajoute une ligne format\u00E9e de la mani\u00E8re suivante \: \nenteteReport\u00A4<in.name>\u00A4<in.value>\n\nLa nouvelle entr\u00E9e est ajout\u00E9e \u00E0 la variable globale "VF.reportInfos" (initialis\u00E9e par le flow "Report.init").\n\nExemples \: \nenteteReport\u00A4Emetteur\u00A4AExxx\nenteteReport\u00A4Objectif\u00A4Cas d'usage permettant de ...\nenteteReport\u00A4ExecutionID\u00A4123456789\n\nSi les caract\u00E8res de s\u00E9paration ne sont pas indiqu\u00E9s, l'op\u00E9ration utilisera les valeurs par d\u00E9faut.\n\nInputs\:\n--------\nin.name (obligatoire) \:\tNom de l'ent\u00EAte \u00E0 ajouter\nin.value (obligatoire) \:\tValeur de l'ent\u00EAte \u00E0 ajouter\nin.separatorField\:\tCaract\u00E8re de s\u00E9paration des champs du rapport\nin.separatorRow\:\tCaract\u00E8re de s\u00E9paration des lignes du rapport\n\nInputs Examples\:\n--------------------\nin.name \:\t\t"Emetteur"\nin.value \:\t\t"AE123"\nin.separatorField\:\t""\nin.separatorRow\:\t""\n\nOutputs\:\n----------\nN/A\n\nRevision\:\n----------\n16-10-2017 \: Capgemini - FBI\nversion initiale\n\nConfiguration\:\n----------------\nOOSP.HPOO.Report.separatorField (System Property) \: caract\u00E8re de s\u00E9paration des champs composant le rapport d'ex\u00E9cution\nOOSP.HPOO.Report.separatorRow (System Property) \: caract\u00E8re de s\u00E9paration des lignes composant le rapport d'ex\u00E9cution
@@ -150,7 +150,7 @@
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="28bcb667-6e32-4224-96e3-353713ef280c">
+        <staticBinding id="5669a332-be8f-43d3-ac11-beec4a3dcba9">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>true</assignToContext>
@@ -163,7 +163,7 @@
           <value>${VF.reportInfos}</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="72ca1b0b-bbe1-4af7-9992-ad7b8c5560c6">
+        <staticBinding id="ead64b3f-eea8-4bf9-b07d-34e02d807fad">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>true</assignToContext>
@@ -176,7 +176,7 @@
           <value>flowDescription</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2d0d53a5-8a8a-4058-8faa-aa0dbc1fab8d">
+        <staticBinding id="dfbaceec-6a3b-47d3-b61a-bef52c94ba50">
           <annotation></annotation>
           <fromContextKey>in.fieldSeparator</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -190,7 +190,7 @@
           <value>${OOSP.HPOO.Report.separatorField}</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="71aefded-1d2c-4e90-94e7-db1e4945ecdf">
+        <staticBinding id="91dc4c8f-07e5-48ec-9e39-ddf5723f816f">
           <annotation></annotation>
           <fromContextKey>in.rowSeparator</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -206,7 +206,7 @@
         </staticBinding>
       </bindings>
       <transitions>
-        <transition id="4ed90d11-61a7-4310-ab41-387f768066ec">
+        <transition id="605f574f-37f1-4c08-ab20-396d58abe37f">
           <annotation></annotation>
           <name>success</name>
           <command>NEXT</command>
@@ -215,19 +215,19 @@
           <shouldHandoff>false</shouldHandoff>
           <transitionValue>0.0</transitionValue>
           <destination>
-            <refId>b65a1779-cee4-44e3-9d03-d83a8ab56183</refId>
+            <refId>b3dd2844-e688-4f8e-b4d9-899eb42c22de</refId>
           </destination>
           <source>
             <refId>a5169287-98f1-42b0-aeda-67a654ca2eff</refId>
           </source>
           <positions>
             <point>
-              <x>177.0</x>
-              <y>273.0</y>
+              <x>81.0</x>
+              <y>372.0</y>
             </point>
             <point>
-              <x>313.0</x>
-              <y>270.0</y>
+              <x>223.0</x>
+              <y>369.0</y>
             </point>
           </positions>
           <labelPosition>
@@ -238,121 +238,7 @@
       </transitions>
       <properties/>
       <opRef>
-        <refId>ddd79f22-8b1e-4605-88d5-d912bb2da2b9</refId>
-      </opRef>
-      <assignments/>
-      <throttleSize>0</throttleSize>
-    </step>
-    <step id="b65a1779-cee4-44e3-9d03-d83a8ab56183">
-      <annotation>878cdc26-12a3-4943-8027-65db9b3d9008.b65a1779-cee4-44e3-9d03-d83a8ab56183.description</annotation>
-      <name>Append new Header</name>
-      <bounds>
-        <x>167.0</x>
-        <y>335.0</y>
-      </bounds>
-      <layer>-1</layer>
-      <hideInbound>false</hideInbound>
-      <iconSpec id="7bfa8100-488b-4641-bada-0dda20b07851">
-        <baseIcon>jar.png</baseIcon>
-        <basePath>Others/</basePath>
-        <readOnly>false</readOnly>
-        <layers>
-          <iconSpec id="cb22b8a9-d1a7-403a-8eef-c4706b347b7c">
-            <baseIcon>add.png</baseIcon>
-            <basePath>Annotations/</basePath>
-            <readOnly>false</readOnly>
-            <layers/>
-          </iconSpec>
-        </layers>
-      </iconSpec>
-      <addResultToRunContext>false</addResultToRunContext>
-      <isCriticalStep>false</isCriticalStep>
-      <isNonBlocking>false</isNonBlocking>
-      <isParallelStep>false</isParallelStep>
-      <isSingleResponse>false</isSingleResponse>
-      <recordInHistory>false</recordInHistory>
-      <recordRawOutput>true</recordRawOutput>
-      <recordPrimaryOutput>true</recordPrimaryOutput>
-      <checkPointStep>true</checkPointStep>
-      <historyCheckPointStep>true</historyCheckPointStep>
-      <scriptResultStep>false</scriptResultStep>
-      <userPrompt></userPrompt>
-      <bindings>
-        <staticBinding id="4336d7fc-00a7-49be-ba74-b76b0bb8b59e">
-          <annotation></annotation>
-          <fromContextKey>vf.reportInfos</fromContextKey>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>keyName</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>vf.reportInfos</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="19e25d55-eb24-438d-bc9a-d94860558dd1">
-          <annotation></annotation>
-          <assignFromContext>false</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>true</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>resultText</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <value>${vf.tagHeader}${vf.fieldSeparator}${in.name}${vf.fieldSeparator}${in.value}</value>
-          <record>false</record>
-        </staticBinding>
-        <staticBinding id="e659a4f1-326a-4ad1-896f-b5ba59262171">
-          <annotation></annotation>
-          <fromContextKey>vf.rowSeparator</fromContextKey>
-          <assignFromContext>true</assignFromContext>
-          <assignToContext>false</assignToContext>
-          <inputType>STRING</inputType>
-          <isList>false</isList>
-          <required>false</required>
-          <isPersisted>true</isPersisted>
-          <inputSymbol>delimiter</inputSymbol>
-          <listDelimiter>,</listDelimiter>
-          <record>false</record>
-        </staticBinding>
-      </bindings>
-      <transitions>
-        <transition id="b26c6a81-8dd1-48dd-8f7b-20c0424230f2">
-          <annotation></annotation>
-          <name>success</name>
-          <command>NEXT</command>
-          <linkMode>false</linkMode>
-          <responseSymbol>success</responseSymbol>
-          <shouldHandoff>false</shouldHandoff>
-          <transitionValue>0.0</transitionValue>
-          <destination>
-            <refId>9e15c366-c743-4999-b057-6826b68e5eb5</refId>
-          </destination>
-          <source>
-            <refId>b65a1779-cee4-44e3-9d03-d83a8ab56183</refId>
-          </source>
-          <positions>
-            <point>
-              <x>313.0</x>
-              <y>270.0</y>
-            </point>
-            <point>
-              <x>455.0</x>
-              <y>269.0</y>
-            </point>
-          </positions>
-          <labelPosition>
-            <x>333.0</x>
-            <y>0.0</y>
-          </labelPosition>
-        </transition>
-      </transitions>
-      <properties/>
-      <opRef>
-        <refId>f6e6cb22-1802-4fca-9f9b-4c699c486aa6</refId>
+        <refId>83420760-f912-4f38-8aa8-ce65b699d9fc</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>
@@ -362,7 +248,7 @@
       <name>Erase empty variable</name>
       <bounds>
         <x>309.0</x>
-        <y>334.0</y>
+        <y>338.0</y>
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
@@ -567,6 +453,95 @@
       <assignments/>
       <throttleSize>0</throttleSize>
     </step>
+    <step id="b3dd2844-e688-4f8e-b4d9-899eb42c22de">
+      <annotation>878cdc26-12a3-4943-8027-65db9b3d9008.b3dd2844-e688-4f8e-b4d9-899eb42c22de.description</annotation>
+      <name>Append new Header info</name>
+      <bounds>
+        <x>173.0</x>
+        <y>338.0</y>
+      </bounds>
+      <layer>-1</layer>
+      <hideInbound>false</hideInbound>
+      <addResultToRunContext>false</addResultToRunContext>
+      <isCriticalStep>false</isCriticalStep>
+      <isNonBlocking>false</isNonBlocking>
+      <isParallelStep>false</isParallelStep>
+      <isSingleResponse>false</isSingleResponse>
+      <recordInHistory>false</recordInHistory>
+      <recordRawOutput>true</recordRawOutput>
+      <recordPrimaryOutput>true</recordPrimaryOutput>
+      <checkPointStep>true</checkPointStep>
+      <historyCheckPointStep>true</historyCheckPointStep>
+      <scriptResultStep>false</scriptResultStep>
+      <userPrompt></userPrompt>
+      <bindings>
+        <staticBinding id="fb2e5b9b-f129-44c5-a79a-1229cb61645c">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>vf.reportInfos</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <value>${vf.tagHeader}${vf.fieldSeparator}${in.name}${vf.fieldSeparator}${in.value}</value>
+          <record>false</record>
+        </staticBinding>
+      </bindings>
+      <transitions>
+        <transition id="c8fc4dd0-e694-4711-9fe1-13bf47f89404">
+          <annotation></annotation>
+          <name>success</name>
+          <command>NEXT</command>
+          <linkMode>false</linkMode>
+          <responseSymbol>success</responseSymbol>
+          <shouldHandoff>false</shouldHandoff>
+          <transitionValue>0.0</transitionValue>
+          <destination>
+            <refId>9e15c366-c743-4999-b057-6826b68e5eb5</refId>
+          </destination>
+          <source>
+            <refId>b3dd2844-e688-4f8e-b4d9-899eb42c22de</refId>
+          </source>
+          <positions>
+            <point>
+              <x>223.0</x>
+              <y>369.0</y>
+            </point>
+            <point>
+              <x>359.0</x>
+              <y>368.0</y>
+            </point>
+          </positions>
+          <labelPosition>
+            <x>333.0</x>
+            <y>0.0</y>
+          </labelPosition>
+        </transition>
+      </transitions>
+      <properties/>
+      <opRef>
+        <refId>83420760-f912-4f38-8aa8-ce65b699d9fc</refId>
+      </opRef>
+      <assignments>
+        <flowVariableAssignment id="32febf80-c4a0-41af-afff-2c2470ff58eb">
+          <annotation></annotation>
+          <name>assignment</name>
+          <action>APPEND</action>
+          <assignmentTargetType>FLOW_VARIABLE</assignmentTargetType>
+          <contextKey>vf.reportInfos</contextKey>
+          <expression id="03d521ce-0197-410c-bf6c-276ebb6a99cd">
+            <annotation></annotation>
+            <name>Input: vf.reportInfos</name>
+            <fieldName>vf.reportInfos</fieldName>
+            <sourceType>INPUT</sourceType>
+            <filters/>
+          </expression>
+        </flowVariableAssignment>
+      </assignments>
+      <throttleSize>0</throttleSize>
+    </step>
     <returnStep id="92ddf3ad-b1ff-48bb-b65a-47a7a0ddcfe7">
       <annotation></annotation>
       <name>Resolved : success</name>
@@ -576,6 +551,12 @@
       </bounds>
       <layer>-1</layer>
       <hideInbound>false</hideInbound>
+      <iconSpec id="d279fb98-a644-4e41-a960-838eca3c550e">
+        <baseIcon>return_success.png</baseIcon>
+        <basePath>System</basePath>
+        <readOnly>true</readOnly>
+        <layers/>
+      </iconSpec>
       <addResultToRunContext>false</addResultToRunContext>
       <isCriticalStep>false</isCriticalStep>
       <isNonBlocking>false</isNonBlocking>

@@ -200,7 +200,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="b7c9fd61-c5ad-4a82-affa-9a9b54d1a64d">
+        <staticBinding id="d190c5d0-3abc-43bd-8b86-41436b7c6ed5">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -213,7 +213,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <value>Post processing</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="6df4164a-fcfa-4ca5-9824-dfdf19feff1b">
+        <staticBinding id="cb8bd04b-d880-4b01-9563-3b87bd262cee">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -226,7 +226,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <value>Perform post-operations</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="93e8b5fc-b3bb-4ab0-b3a9-25e09f5227f3">
+        <staticBinding id="5c0c7458-e5eb-4c4c-b22e-5016cdecf5f7">
           <annotation></annotation>
           <fromContextKey>vf.value</fromContextKey>
           <assignFromContext>false</assignFromContext>
@@ -239,7 +239,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="42bd2b74-b253-4b66-b7b5-c678a145825d">
+        <staticBinding id="3861e391-a350-4f73-914d-4869b35cd367">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -252,7 +252,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <value>SUCCESS</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="72be96a0-9e2f-4356-8907-9e24e93d658b">
+        <staticBinding id="b546729b-e788-4096-b0c3-5744f235ab74">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -263,6 +263,30 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <inputSymbol>in.stepMsg</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="c4e409ae-8e69-4fdf-b911-054fb062e7b1">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.fieldSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="7bff2e4a-dafd-4b8d-9e0f-19a4f04fcb5f">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.rowSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
       </bindings>
@@ -299,7 +323,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
       </transitions>
       <properties/>
       <opRef>
-        <refId>dd28d0f1-1ad7-4bef-b7f7-2cc73a361c71</refId>
+        <refId>4711c277-1b6c-4299-9511-ea8ee778f204</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>
@@ -370,7 +394,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
       <scriptResultStep>false</scriptResultStep>
       <userPrompt></userPrompt>
       <bindings>
-        <staticBinding id="7cf5913c-387a-4d9f-be33-1251f5db32c8">
+        <staticBinding id="81138654-fb9f-404f-bf77-4ba0c0c056e6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -383,7 +407,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <value>Post processing</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2875a6f7-3c9b-4270-8024-bad7f1c845d6">
+        <staticBinding id="dbddb8da-6ee3-43ce-ad4d-d6698426a0c4">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -396,7 +420,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <value>Delete Use Case Tmp folder</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="07415666-7319-419a-bebe-3adc2724bb81">
+        <staticBinding id="c4f27cdf-0177-4edc-bd0a-7ed80adc814d">
           <annotation></annotation>
           <fromContextKey>in.variable1</fromContextKey>
           <assignFromContext>false</assignFromContext>
@@ -409,7 +433,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="2231b5a2-bb34-448d-9a43-ef7e6c85e86e">
+        <staticBinding id="ae760934-ea6b-46b1-b024-2effad328ba6">
           <annotation></annotation>
           <assignFromContext>false</assignFromContext>
           <assignToContext>false</assignToContext>
@@ -422,7 +446,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <value>FAILURE</value>
           <record>false</record>
         </staticBinding>
-        <staticBinding id="a43f6c24-5352-44f0-a574-1d2725219153">
+        <staticBinding id="d7bef9c3-63db-43b5-990a-52eb7c9b6680">
           <annotation></annotation>
           <fromContextKey>vf.errorMsg</fromContextKey>
           <assignFromContext>true</assignFromContext>
@@ -434,6 +458,30 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
           <inputSymbol>in.stepMsg</inputSymbol>
           <listDelimiter>,</listDelimiter>
           <value></value>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="a69a78d9-93f4-4808-9d1c-c9f3cce1cfc8">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.fieldSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
+          <record>false</record>
+        </staticBinding>
+        <staticBinding id="347441ca-14c3-41b1-ae09-f6d1c17a474d">
+          <annotation></annotation>
+          <assignFromContext>false</assignFromContext>
+          <assignToContext>false</assignToContext>
+          <inputType>STRING</inputType>
+          <isList>false</isList>
+          <required>false</required>
+          <isPersisted>true</isPersisted>
+          <inputSymbol>in.rowSeparator</inputSymbol>
+          <listDelimiter>,</listDelimiter>
           <record>false</record>
         </staticBinding>
       </bindings>
@@ -470,7 +518,7 @@ d3f87e7c-c282-4ba6-b4e6-18758518f8bf.description=Description\:\n-------------\nE
       </transitions>
       <properties/>
       <opRef>
-        <refId>dd28d0f1-1ad7-4bef-b7f7-2cc73a361c71</refId>
+        <refId>4711c277-1b6c-4299-9511-ea8ee778f204</refId>
       </opRef>
       <assignments/>
       <throttleSize>0</throttleSize>

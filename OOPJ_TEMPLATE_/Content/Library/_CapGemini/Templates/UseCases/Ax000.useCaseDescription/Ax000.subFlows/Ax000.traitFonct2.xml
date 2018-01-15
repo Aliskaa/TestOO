@@ -336,7 +336,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
           <scriptResultStep>false</scriptResultStep>
           <userPrompt></userPrompt>
           <bindings>
-            <staticBinding id="671e3169-925d-4587-b188-3bfab3a61d66">
+            <staticBinding id="3a38e0c3-3105-47c6-933f-585470bf2e68">
               <annotation></annotation>
               <assignFromContext>false</assignFromContext>
               <assignToContext>false</assignToContext>
@@ -349,7 +349,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <value>Functional Operation</value>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="e92945fb-d6e6-4bf4-a55d-34fd45d97786">
+            <staticBinding id="dc2f6cae-f597-42c0-84f5-86ba668eddb1">
               <annotation></annotation>
               <assignFromContext>false</assignFromContext>
               <assignToContext>false</assignToContext>
@@ -362,7 +362,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <value></value>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="2c62347d-9e65-465c-a75d-b41b517182d9">
+            <staticBinding id="83cf7de8-1dc7-44a9-8dc6-651d4ecfc51d">
               <annotation></annotation>
               <fromContextKey>in.variable1</fromContextKey>
               <assignFromContext>true</assignFromContext>
@@ -375,7 +375,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <listDelimiter>,</listDelimiter>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="b2bcc6e0-8028-4f6f-9a85-4da1adb9805e">
+            <staticBinding id="be2b7fd6-e7de-48f7-8f45-bbb027239348">
               <annotation></annotation>
               <assignFromContext>false</assignFromContext>
               <assignToContext>false</assignToContext>
@@ -388,7 +388,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <value>FAILURE</value>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="47eaa2db-1383-49bf-8953-743ee31fc064">
+            <staticBinding id="9e43b1d9-788e-41a5-be6e-cb0c1f503461">
               <annotation></annotation>
               <fromContextKey>vf.errorMsg</fromContextKey>
               <assignFromContext>true</assignFromContext>
@@ -400,6 +400,30 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <inputSymbol>in.stepMsg</inputSymbol>
               <listDelimiter>,</listDelimiter>
               <value></value>
+              <record>false</record>
+            </staticBinding>
+            <staticBinding id="952b51c7-25e6-404c-a590-8b525b47181f">
+              <annotation></annotation>
+              <assignFromContext>false</assignFromContext>
+              <assignToContext>false</assignToContext>
+              <inputType>STRING</inputType>
+              <isList>false</isList>
+              <required>false</required>
+              <isPersisted>true</isPersisted>
+              <inputSymbol>in.fieldSeparator</inputSymbol>
+              <listDelimiter>,</listDelimiter>
+              <record>false</record>
+            </staticBinding>
+            <staticBinding id="b3393ced-5f8a-4650-83cd-8b0d3b4b1435">
+              <annotation></annotation>
+              <assignFromContext>false</assignFromContext>
+              <assignToContext>false</assignToContext>
+              <inputType>STRING</inputType>
+              <isList>false</isList>
+              <required>false</required>
+              <isPersisted>true</isPersisted>
+              <inputSymbol>in.rowSeparator</inputSymbol>
+              <listDelimiter>,</listDelimiter>
               <record>false</record>
             </staticBinding>
           </bindings>
@@ -436,7 +460,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
           </transitions>
           <properties/>
           <opRef>
-            <refId>dd28d0f1-1ad7-4bef-b7f7-2cc73a361c71</refId>
+            <refId>4711c277-1b6c-4299-9511-ea8ee778f204</refId>
           </opRef>
           <assignments>
             <flowVariableAssignment id="5514f48c-bf7c-4b30-a28d-4a83cf6fb4b1">
@@ -520,7 +544,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
           <scriptResultStep>false</scriptResultStep>
           <userPrompt></userPrompt>
           <bindings>
-            <staticBinding id="139ece4a-faaf-4563-97ad-988da27646f0">
+            <staticBinding id="2b2daa6c-86b8-4318-b0dd-321c599ff865">
               <annotation></annotation>
               <assignFromContext>false</assignFromContext>
               <assignToContext>false</assignToContext>
@@ -533,7 +557,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <value>Functional Operation</value>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="eac95407-14c8-4adc-81fb-4b5730126ddc">
+            <staticBinding id="1f26fa4d-60bc-481b-b310-61e7e06a6a03">
               <annotation></annotation>
               <assignFromContext>false</assignFromContext>
               <assignToContext>false</assignToContext>
@@ -546,7 +570,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <value></value>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="270d430b-846b-4671-8d83-f2c3f7081c30">
+            <staticBinding id="f53feee4-651a-4d5a-a516-76c1d2a7243e">
               <annotation></annotation>
               <fromContextKey>in.variable1</fromContextKey>
               <assignFromContext>true</assignFromContext>
@@ -559,7 +583,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <listDelimiter>,</listDelimiter>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="3e677309-5ef8-4f1a-81ae-1ee055a44358">
+            <staticBinding id="7ca7e809-36cb-4b05-8322-bc67dbf6677c">
               <annotation></annotation>
               <assignFromContext>false</assignFromContext>
               <assignToContext>false</assignToContext>
@@ -572,7 +596,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <value>SUCCESS</value>
               <record>false</record>
             </staticBinding>
-            <staticBinding id="b9f32e2c-93a6-4f42-bbaa-72fa7ccfe556">
+            <staticBinding id="62fa64ed-9f23-4af7-9cb2-5f8c8d0a771f">
               <annotation></annotation>
               <fromContextKey>vf.output</fromContextKey>
               <assignFromContext>true</assignFromContext>
@@ -584,6 +608,30 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
               <inputSymbol>in.stepMsg</inputSymbol>
               <listDelimiter>,</listDelimiter>
               <value></value>
+              <record>false</record>
+            </staticBinding>
+            <staticBinding id="bb17fe1e-f7da-4608-bc56-5276e0b99848">
+              <annotation></annotation>
+              <assignFromContext>false</assignFromContext>
+              <assignToContext>false</assignToContext>
+              <inputType>STRING</inputType>
+              <isList>false</isList>
+              <required>false</required>
+              <isPersisted>true</isPersisted>
+              <inputSymbol>in.fieldSeparator</inputSymbol>
+              <listDelimiter>,</listDelimiter>
+              <record>false</record>
+            </staticBinding>
+            <staticBinding id="bad12ab0-f31e-45c8-a91b-98f5ee0dbec2">
+              <annotation></annotation>
+              <assignFromContext>false</assignFromContext>
+              <assignToContext>false</assignToContext>
+              <inputType>STRING</inputType>
+              <isList>false</isList>
+              <required>false</required>
+              <isPersisted>true</isPersisted>
+              <inputSymbol>in.rowSeparator</inputSymbol>
+              <listDelimiter>,</listDelimiter>
               <record>false</record>
             </staticBinding>
           </bindings>
@@ -620,7 +668,7 @@ f97cef9d-7109-47f0-83b1-a1122b7d4d1e.description=Description\:\n-------------\n<
           </transitions>
           <properties/>
           <opRef>
-            <refId>dd28d0f1-1ad7-4bef-b7f7-2cc73a361c71</refId>
+            <refId>4711c277-1b6c-4299-9511-ea8ee778f204</refId>
           </opRef>
           <assignments>
             <flowVariableAssignment id="5ce3d161-099e-4541-87b9-0a0387dcf77f">
